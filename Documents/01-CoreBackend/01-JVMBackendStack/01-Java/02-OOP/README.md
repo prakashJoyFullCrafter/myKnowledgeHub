@@ -61,6 +61,7 @@
 - [ ] **D** - Dependency Inversion Principle
 - [ ] Real-world code examples for each
 
+
 ## Module 8: OOP Design Patterns (Intro)
 - [ ] Creational: Singleton, Factory, Builder
 - [ ] Structural: Adapter, Decorator, Proxy

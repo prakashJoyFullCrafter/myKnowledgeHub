@@ -33,7 +33,7 @@
   - [ ] Cannot use primitives as type arguments
 - [ ] Workarounds: `Class<T>` token, `Array.newInstance()`
 
-## Module 5: Generic Interfaces & Inheritance
+![img.png](img.png)## Module 5: Generic Interfaces & Inheritance
 - [ ] Implementing a generic interface (`Comparable<T>`, `Iterable<T>`)
 - [ ] Generic class extending another generic class
 - [ ] Raw types and why to avoid them
