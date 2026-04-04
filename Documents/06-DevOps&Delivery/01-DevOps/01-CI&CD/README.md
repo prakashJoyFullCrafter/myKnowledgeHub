@@ -1,1 +1,3 @@
-# CI&CD
+# CI/CD
+
+Continuous Integration and Continuous Delivery pipelines.
