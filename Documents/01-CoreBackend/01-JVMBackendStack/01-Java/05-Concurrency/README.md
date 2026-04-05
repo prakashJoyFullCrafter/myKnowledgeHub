@@ -43,7 +43,7 @@
 - [ ] `LongAdder`, `LongAccumulator` - high-contention counters (Java 8+)
 - [ ] When atomics are enough vs when you need locks
 
-## Module 6: Concurrent Collections
+![img.png](img.png)## Module 6: Concurrent Collections
 - [ ] `ConcurrentHashMap` - segment locking, `compute()`, `merge()`
 - [ ] `CopyOnWriteArrayList` / `CopyOnWriteArraySet` - read-heavy workloads
 - [ ] `ConcurrentLinkedQueue` / `ConcurrentLinkedDeque`
@@ -104,7 +104,7 @@
 - [ ] Pinning: `synchronized` blocks with virtual threads
 - [ ] Migration strategy from platform threads
 
-## Module 12: Common Patterns & Best Practices
+![img.png](img.png)## Module 12: Common Patterns & Best Practices
 - [ ] Producer-Consumer pattern
 - [ ] Thread pool sizing: CPU-bound vs I/O-bound formula
 - [ ] Immutability as a concurrency strategy
