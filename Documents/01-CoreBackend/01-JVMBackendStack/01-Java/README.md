@@ -1,10 +1,20 @@
-# Java
+# Java - Expert Level Curriculum
 
-Complete Java curriculum from fundamentals to advanced topics.
+Complete Java curriculum from fundamentals to JVM internals.
 
-## Topics
-1. **Java Core** - Fundamentals, strings, arrays, I/O, streams, modern Java
-2. **OOP** - Classes, inheritance, polymorphism, SOLID
-3. **Generics** - Type safety, wildcards, PECS, type erasure
-4. **Collections** - List, Set, Map, Queue, performance guide
-5. **Concurrency** - Threads, locks, executors, CompletableFuture, virtual threads
+## Core (Foundation)
+1. **Java Core** - Fundamentals, strings, arrays, I/O, streams, modern Java (11 modules)
+2. **OOP** - Classes, inheritance, polymorphism, SOLID, design patterns (8 modules)
+3. **Generics** - Type safety, wildcards, PECS, type erasure (7 modules)
+4. **Collections** - List, Set, Map, Queue, streams, performance guide (9 modules)
+5. **Concurrency** - Threads, locks, executors, CompletableFuture, virtual threads (12 modules)
+
+## Advanced (Expert)
+6. **JVM Internals** - Class loading, memory, JIT, GC collectors, profiling (14 modules)
+7. **Networking & HTTP** - Sockets, NIO, HttpClient, WebSocket, TLS/SSL (6 modules)
+8. **Reflection & Proxies** - Runtime inspection, dynamic proxies, CGLIB, annotation processing (7 modules)
+9. **Java Modules (JPMS)** - Module system, SPI, migration, jlink (5 modules)
+10. **Build Tools** - Maven, Gradle, multi-module, dependency management (8 modules)
+
+## Reference
+11. **Best Practices & Rules** - Null handling, exceptions, immutability, API design, performance, security, logging, Effective Java (10 modules)
