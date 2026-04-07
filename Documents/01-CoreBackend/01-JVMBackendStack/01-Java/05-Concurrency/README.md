@@ -99,12 +99,27 @@
 - [ ] Platform threads vs virtual threads
 - [ ] Creating virtual threads: `Thread.ofVirtual()`, `Executors.newVirtualThreadPerTaskExecutor()`
 - [ ] Why virtual threads change the game (millions of threads)
-- [ ] Structured concurrency (preview)
-- [ ] Scoped values (preview)
-- [ ] Pinning: `synchronized` blocks with virtual threads
-- [ ] Migration strategy from platform threads
+- [ ] Pinning: `synchronized` blocks pin virtual thread to carrier → prefer `ReentrantLock`
+- [ ] Virtual threads + I/O: blocking calls no longer waste OS threads
+- [ ] Migration strategy: replace `newFixedThreadPool` with `newVirtualThreadPerTaskExecutor` for I/O-bound
 
-![img.png](img.png)## Module 12: Common Patterns & Best Practices
+### Module 12: Structured Concurrency (Java 24+)
+- [ ] `StructuredTaskScope` - subtasks have bounded lifecycle tied to parent
+- [ ] `ShutdownOnFailure` - cancel all subtasks on first failure
+- [ ] `ShutdownOnSuccess` - cancel remaining on first success
+- [ ] `fork()` to submit subtasks, `join()` to await, `throwIfFailed()` to propagate
+- [ ] Why: prevents thread leaks, auto-cancellation, clear parent-child relationship
+- [ ] Replaces manual `ExecutorService` + `Future` + `try-finally` patterns
+
+### Module 13: Scoped Values (Java 24+)
+- [ ] `ScopedValue<T>` - replacement for `ThreadLocal` in virtual thread era
+- [ ] `ScopedValue.where(KEY, value).run(() -> ...)` - bounded scope
+- [ ] Immutable within scope (unlike `ThreadLocal`)
+- [ ] Automatic inheritance by child virtual threads
+- [ ] Why `ThreadLocal` is problematic: unbounded lifetime, mutable, memory leaks, costly with virtual threads
+- [ ] Migration: `ThreadLocal` → `ScopedValue` for request-scoped data (trace IDs, auth context)
+
+## Module 14: Common Patterns & Best Practices
 - [ ] Producer-Consumer pattern
 - [ ] Thread pool sizing: CPU-bound vs I/O-bound formula
 - [ ] Immutability as a concurrency strategy

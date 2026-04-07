@@ -8,6 +8,8 @@
 - [ ] UDP sockets: `DatagramSocket` and `DatagramPacket`
 - [ ] Socket timeouts and connection management
 - [ ] Non-blocking I/O with `SocketChannel` (NIO)
+- [ ] **Unix Domain Sockets** (Java 16+): `UnixDomainSocketAddress` - faster IPC than TCP loopback
+- [ ] Use cases: communicating with Docker daemon, local database connections, microservice sidecar
 
 ## Module 2: Java NIO (Non-Blocking I/O)
 - [ ] `Channel` and `Buffer` architecture
@@ -28,6 +30,8 @@
 - [ ] HTTP/2 support and server push
 - [ ] Sending JSON with `HttpRequest.BodyPublishers.ofString()`
 - [ ] File upload with multipart
+- [ ] **HTTP/3 & QUIC** awareness: UDP-based transport, 0-RTT connection, built-in TLS 1.3
+- [ ] Java's HTTP/3 status: no built-in support yet, third-party options (Netty, Jetty)
 
 ## Module 4: WebSocket
 - [ ] WebSocket protocol: full-duplex over single TCP connection

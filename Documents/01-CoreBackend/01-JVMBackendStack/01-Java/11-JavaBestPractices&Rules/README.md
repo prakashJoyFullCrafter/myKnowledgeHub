@@ -70,11 +70,15 @@ AppException (RuntimeException)
 - [ ] **Mark all method parameters `final`** (optional but signals intent)
 - [ ] **Make utility classes non-instantiable**: `private` constructor + `final` class
 - [ ] **Thread safety for free** - immutable objects are inherently thread-safe
+- [ ] **Defensive copies for mutable types**: copy `Date`, `Calendar`, arrays in constructors and getters
+- [ ] **Never expose mutable internal arrays**: `return Arrays.copyOf(this.items, items.length)`
+- [ ] **`Date`/`Calendar` fields**: copy on input and output, or replace with `java.time` immutables
 
 ### Anti-Patterns
 - [ ] ❌ `public List<User> getUsers() { return this.users; }` → ✅ `return List.copyOf(this.users);`
 - [ ] ❌ Mutable DTO with 20 setters → ✅ Record or Builder pattern
 - [ ] ❌ `public static` mutable fields → ✅ `private static final` + unmodifiable
+- [ ] ❌ `this.dates = dates;` (mutable `Date[]`) → ✅ `this.dates = Arrays.copyOf(dates, dates.length);`
 
 ---
 
@@ -91,6 +95,10 @@ AppException (RuntimeException)
 - [ ] **Interface-based API**: return `List` not `ArrayList`, accept `Collection` not `List` when possible
 - [ ] **Use enums instead of `int` constants or `String` flags**
 - [ ] **Avoid boolean parameters** - they make call sites unreadable: `createUser(true, false)` → use enums or builder
+- [ ] **Records**: use for DTOs, value objects, projections; NOT for JPA entities (need mutability for proxying)
+- [ ] **Records**: prefer records over Lombok `@Value` in Java 16+ projects
+- [ ] **Records**: use compact constructors for validation: `record Email(String value) { Email { if (!value.contains("@")) throw new IllegalArgumentException(); } }`
+- [ ] **Records**: remember only constructor params are in `equals()`/`hashCode()` - body fields are excluded
 
 ### Naming Conventions
 ```

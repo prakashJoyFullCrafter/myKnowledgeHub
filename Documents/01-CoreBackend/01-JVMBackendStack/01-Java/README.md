@@ -18,3 +18,6 @@ Complete Java curriculum from fundamentals to JVM internals.
 
 ## Reference
 11. **Best Practices & Rules** - Null handling, exceptions, immutability, API design, performance, security, logging, Effective Java (10 modules)
+
+## Modern Java
+12. **Modern Java (17-25+)** - Pattern matching, records, sealed types, text blocks, streams, virtual threads, structured concurrency, Panama FFM API (7 modules)

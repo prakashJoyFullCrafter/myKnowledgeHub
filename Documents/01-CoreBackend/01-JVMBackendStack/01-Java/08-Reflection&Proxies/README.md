@@ -56,6 +56,45 @@
 - [ ] Performance: MethodHandle vs Reflection benchmarks
 - [ ] `invokedynamic` instruction and lambda implementation
 
+## Module 8: Java Agents & Instrumentation
+- [ ] What is a Java agent? Code that runs before/alongside your application
+- [ ] **`premain()` agent** - load-time instrumentation
+  - [ ] `public static void premain(String args, Instrumentation inst)`
+  - [ ] Activated via `-javaagent:myagent.jar` on JVM startup
+  - [ ] Agent JAR: `MANIFEST.MF` with `Premain-Class` attribute
+- [ ] **`agentmain()` agent** - runtime attach (hot-patching)
+  - [ ] `public static void agentmain(String args, Instrumentation inst)`
+  - [ ] `MANIFEST.MF` with `Agent-Class` attribute
+  - [ ] Attach API: `VirtualMachine.attach(pid)` → `vm.loadAgent("agent.jar")`
+  - [ ] Use case: attach profiler or diagnostic tool to running production JVM
+- [ ] **`Instrumentation` API**:
+  - [ ] `addTransformer(ClassFileTransformer, canRetransform)` - register bytecode transformer
+  - [ ] `retransformClasses(Class<?>...)` - re-trigger transformation on already loaded classes
+  - [ ] `redefineClasses(ClassDefinition...)` - replace class bytecode entirely
+  - [ ] `getAllLoadedClasses()` - inspect what's loaded in the JVM
+  - [ ] `getObjectSize(Object)` - approximate memory size of an object
+- [ ] **`ClassFileTransformer`** interface:
+  - [ ] `transform(ClassLoader, className, classBeingRedefined, protectionDomain, classfileBuffer)` → modified `byte[]`
+  - [ ] Intercept class loading, modify bytecode before class is defined
+  - [ ] Filtering: only transform target classes, pass through others unchanged
+- [ ] **Bytecode manipulation in agents**:
+  - [ ] ASM - low-level visitor API for reading/writing bytecode
+  - [ ] Byte Buddy Agent - `AgentBuilder` DSL for clean agent development
+  - [ ] Byte Buddy `@Advice` - inject code at method entry/exit without rewriting entire method
+- [ ] **`MANIFEST.MF` attributes**:
+  - [ ] `Premain-Class` - agent entry point for `-javaagent`
+  - [ ] `Agent-Class` - agent entry point for runtime attach
+  - [ ] `Can-Retransform-Classes: true` - allow retransformation
+  - [ ] `Can-Redefine-Classes: true` - allow redefinition
+  - [ ] `Boot-Class-Path` - additional JARs on bootstrap classloader
+- [ ] **Real-world agent use cases**:
+  - [ ] APM tools: Datadog, New Relic, Elastic APM - auto-instrument HTTP, JDBC, messaging
+  - [ ] Code coverage: JaCoCo - injects counters into bytecode at load time
+  - [ ] Mocking: Mockito inline - redefines final classes for mocking
+  - [ ] Profiling: Async Profiler attaches via Attach API
+  - [ ] Hot reload: JRebel, Spring DevTools - redefine classes on change
+  - [ ] Security: runtime security policies and sandboxing
+
 ---
 
 ## Recommended Practice
@@ -67,9 +106,13 @@
 | Module 5 | Compare JDK proxy vs CGLIB proxy performance |
 | Module 6 | Create a `@Builder` annotation processor that generates builder code |
 | Module 7 | Benchmark MethodHandle vs reflection for method invocation |
+| Module 8 | Build a Java agent that logs method entry/exit times using Byte Buddy `@Advice` |
 
 ## Key Resources
 - Java Reflection API documentation (Oracle)
 - Effective Java - Joshua Bloch (Item 65: Prefer interfaces to reflection)
 - Byte Buddy documentation
 - Understanding Spring Framework internals
+- `java.lang.instrument` package documentation (Oracle)
+- Byte Buddy Agent tutorial (bytebuddy.net)
+- Rafael Winterhalter - "The definitive guide to Java agents" (talks & blog)

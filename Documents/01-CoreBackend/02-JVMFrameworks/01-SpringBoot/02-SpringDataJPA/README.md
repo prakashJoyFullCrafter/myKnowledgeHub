@@ -48,6 +48,56 @@
 - [ ] `@SQLDelete` and `@Where` for soft deletes
 - [ ] `@Filter` for conditional filtering
 
+## Module 7: Database Migrations (Flyway & Liquibase)
+- [ ] Why migrations? Version-controlled schema changes
+- [ ] **Flyway**:
+  - [ ] `spring-boot-starter-flyway` auto-configuration
+  - [ ] Migration naming: `V1__create_users_table.sql`, `V2__add_email_column.sql`
+  - [ ] Repeatable migrations: `R__refresh_views.sql`
+  - [ ] Migration locations: `classpath:db/migration`
+  - [ ] Flyway commands: `migrate`, `validate`, `info`, `repair`, `clean`
+  - [ ] Baseline: `spring.flyway.baseline-on-migrate=true` for existing databases
+  - [ ] Callbacks: `beforeMigrate`, `afterMigrate` hooks
+- [ ] **Liquibase**:
+  - [ ] Changelog formats: XML, YAML, SQL
+  - [ ] Changesets: `id`, `author`, `runAlways`, `runOnChange`
+  - [ ] Rollback support (Liquibase advantage over Flyway)
+  - [ ] Preconditions and contexts
+- [ ] **Best practices**:
+  - [ ] Never modify an already-applied migration — always add new ones
+  - [ ] Always test migrations against production-like data
+  - [ ] Backward-compatible migrations for zero-downtime deployments
+  - [ ] Separate DDL and DML migrations
+  - [ ] Flyway vs Liquibase decision guide
+- [ ] **Spring Boot integration**:
+  - [ ] Auto-runs on startup before JPA entity validation
+  - [ ] `spring.flyway.*` / `spring.liquibase.*` configuration properties
+  - [ ] Testcontainers + Flyway for integration tests with real schema
+
+## Module 8: Hibernate-Specific Features (Beyond JPA)
+- [ ] `@NaturalId` - business key lookups with second-level cache support
+- [ ] `@Formula` - computed column using SQL expression
+- [ ] `@Where` - default filter on entity (e.g., soft delete: `@Where(clause = "deleted = false")`)
+- [ ] `@Filter` and `@FilterDef` - dynamic, toggleable filters
+- [ ] `@Type` and custom `UserType` for non-standard column types
+- [ ] `@BatchSize` - batch fetching for collections (N+1 mitigation)
+- [ ] `@Fetch(FetchMode.SUBSELECT)` - subselect fetching strategy
+- [ ] Hibernate Envers for entity auditing/versioning
+- [ ] Hibernate statistics: `hibernate.generate_statistics=true`
+- [ ] Hibernate 6 features: `@TimeZoneStorage`, improved `@Array` support, Jakarta namespace
+
+## Module 9: Multi-Tenancy
+- [ ] Multi-tenancy strategies:
+  - [ ] **Separate database** per tenant - strongest isolation, highest cost
+  - [ ] **Separate schema** per tenant - moderate isolation, moderate cost
+  - [ ] **Shared schema with discriminator** - lowest isolation, lowest cost
+- [ ] `CurrentTenantIdentifierResolver` - resolve tenant from request (header, JWT, subdomain)
+- [ ] `MultiTenantConnectionProvider` - route to correct database/schema
+- [ ] Hibernate 6 `@TenantId` annotation - discriminator column approach
+- [ ] Tenant-aware Flyway migrations: per-tenant schema setup
+- [ ] Spring Security + multi-tenancy: tenant context from authentication
+- [ ] Testing multi-tenant applications
+
 ---
 
 ## Recommended Practice
@@ -58,8 +108,14 @@
 | Module 4 | Implement a money transfer with proper transaction handling |
 | Module 5 | Detect and fix N+1 queries in the blog project |
 | Module 6 | Add auditing and soft delete to all entities |
+| Module 7 | Set up Flyway migrations for the blog project, practice adding columns safely |
+| Module 8 | Add `@NaturalId` for email lookup, `@Filter` for soft delete, enable Hibernate statistics |
+| Module 9 | Add tenant-aware data isolation using discriminator column approach |
 
 ## Key Resources
 - Spring Data JPA Reference Documentation
 - Java Persistence with Hibernate - Bauer, King, Gregory
 - Vlad Mihalcea's blog (hibernate tips)
+- Flyway documentation (flywaydb.org)
+- Liquibase documentation (liquibase.org)
+- Hibernate 6 User Guide

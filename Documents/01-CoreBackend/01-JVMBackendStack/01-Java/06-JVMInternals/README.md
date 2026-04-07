@@ -214,7 +214,11 @@
   - [ ] Metaspace OOM → class loader leak, increase MetaspaceSize
 - [ ] **Memory leak detection**:
   - [ ] Heap dump: `-XX:+HeapDumpOnOutOfMemoryError`
-  - [ ] Analysis with `Eclipse MAT`, `VisualVM`, `JProfiler`
+  - [ ] Manual heap dump: `jcmd <pid> GC.heap_dump /path/dump.hprof` or `jmap -dump:format=b,file=dump.hprof <pid>`
+  - [ ] Analysis with `Eclipse MAT`: dominator tree, leak suspects report, GC roots path-to
+  - [ ] `VisualVM` - live heap monitoring, sampling, object histogram
+  - [ ] `JProfiler` / `YourKit` - commercial profilers with allocation tracking
+  - [ ] Common leak patterns: static collections growing, unclosed resources, listener/callback accumulation, ClassLoader leaks
 - [ ] Key JVM monitoring tools:
   - [ ] `jstat -gcutil <pid> 1000` - live GC stats
   - [ ] `jmap -histo <pid>` - object histogram
@@ -233,7 +237,14 @@
 - [ ] `-XX:+PrintSafepointStatistics` (Java 8) / `-Xlog:safepoint` (Java 9+)
 - [ ] **Bias locking** and its deprecation (Java 15+)
 - [ ] Thread states from JVM perspective: RUNNABLE, BLOCKED, WAITING, IN_VM, IN_NATIVE
-- [ ] `jstack <pid>` - thread dumps and deadlock detection
+- [ ] **Thread dump analysis**:
+  - [ ] `jstack <pid>` - capture thread dumps
+  - [ ] `jcmd <pid> Thread.dump_to_file /path/threads.txt` (Java 19+)
+  - [ ] Reading thread dumps: thread states, lock ownership, waiting-on
+  - [ ] Deadlock detection: `jstack` auto-reports deadlock cycles
+  - [ ] Diagnosing thread contention: many BLOCKED threads on same lock
+  - [ ] Diagnosing thread leaks: thread count growing over time
+  - [ ] Tools: `fastthread.io`, IntelliJ thread dump analyzer
 - [ ] Virtual threads and safepoints (Java 21+)
 
 ---
@@ -260,6 +271,15 @@
   - [ ] `@Benchmark`, `@Warmup`, `@Measurement`, `@BenchmarkMode`
   - [ ] Blackhole - preventing dead code elimination
 - [ ] **Perf / perf-map-agent** - kernel-level CPU profiling with JIT symbol resolution
+- [ ] **Production troubleshooting toolkit**:
+  - [ ] `jcmd <pid> VM.info` - full JVM configuration dump
+  - [ ] `jcmd <pid> VM.flags` - all active JVM flags
+  - [ ] `jcmd <pid> VM.system_properties` - system properties
+  - [ ] `jinfo <pid>` - inspect/modify JVM flags at runtime
+  - [ ] `jstat -gcutil <pid> 1000` - live GC statistics every second
+  - [ ] Arthas (Alibaba) - production diagnostics: `watch`, `trace`, `monitor`, `dashboard`
+  - [ ] Common OOM patterns: heap (object leak), metaspace (classloader leak), direct (NIO buffer leak), stack (deep recursion/thread explosion)
+  - [ ] On-call checklist: GC logs → thread dump → heap dump → JFR recording
 
 ---
 
@@ -277,6 +297,8 @@
 - [ ] **CRaC (Coordinated Restore at Checkpoint)** - JVM snapshot and restore
 - [ ] **JVMTI (JVM Tool Interface)** - how profilers and debuggers attach to JVM
 - [ ] **JNI (Java Native Interface)** basics - calling C/C++ from Java
+- [ ] **ClassFile API** (Java 24+) - standard API for reading/writing `.class` files, replaces ASM for many use cases
+- [ ] **Compact Object Headers** (Project Lilliput, experimental) - reducing 12-byte header to 8 bytes, impacts memory footprint
 
 ---
 

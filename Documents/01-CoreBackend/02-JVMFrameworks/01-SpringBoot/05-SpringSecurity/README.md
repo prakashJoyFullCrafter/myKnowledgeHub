@@ -46,6 +46,26 @@
 - [ ] Audit logging for security events
 - [ ] Common vulnerabilities and mitigations
 
+## Module 7: Session Management & Spring Session
+- [ ] **Session fundamentals**:
+  - [ ] `HttpSession` - server-side session storage
+  - [ ] `JSESSIONID` cookie - session tracking
+  - [ ] Session timeout: `server.servlet.session.timeout=30m`
+- [ ] **Session security**:
+  - [ ] Session fixation protection: `sessionManagement().sessionFixation().migrateSession()`
+  - [ ] Concurrent session control: `maximumSessions(1).maxSessionsPreventsLogin(true)`
+  - [ ] Session creation policy: `ALWAYS`, `IF_REQUIRED`, `NEVER`, `STATELESS`
+  - [ ] When to go stateless (JWT) vs stateful (sessions)
+- [ ] **Spring Session** (`spring-session-data-redis` / `spring-session-jdbc`):
+  - [ ] Why: session sharing across multiple app instances (load balancer)
+  - [ ] Redis-backed sessions: `@EnableRedisHttpSession`
+  - [ ] JDBC-backed sessions: `@EnableJdbcHttpSession`
+  - [ ] Session serialization: JSON vs JDK
+  - [ ] TTL configuration and cleanup
+  - [ ] `FindByIndexNameSessionRepository` - find sessions by principal
+- [ ] **Session + WebSocket**: maintaining session across WebSocket connections
+- [ ] **Remember-me** with persistent tokens (database-backed)
+
 ---
 
 ## Recommended Practice
@@ -56,7 +76,9 @@
 | Module 4 | Add role-based access: ADMIN, USER, MODERATOR |
 | Module 5 | Add Google OAuth2 login |
 | Module 6 | Security audit - fix CORS, CSRF, headers |
+| Module 7 | Add Redis-backed sessions with concurrent session control, test with two app instances behind load balancer |
 
 ## Key Resources
 - Spring Security Reference Documentation
 - Spring Security in Action - Laurentiu Spilca
+- Spring Session Reference Documentation

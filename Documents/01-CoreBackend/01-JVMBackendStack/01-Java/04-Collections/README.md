@@ -7,6 +7,10 @@
 - [ ] Why we program to interfaces (`List` not `ArrayList`)
 - [ ] Unmodifiable vs immutable collections
 - [ ] `Collections` utility class vs `Collection` interface
+- [ ] **`SequencedCollection`** (Java 21+) - new interface: `getFirst()`, `getLast()`, `reversed()`
+- [ ] **`SequencedSet`** (Java 21+) - `LinkedHashSet` now implements it
+- [ ] **`SequencedMap`** (Java 21+) - `firstEntry()`, `lastEntry()`, `putFirst()`, `putLast()`, `reversed()`
+- [ ] New hierarchy: `List`, `SortedSet`, `LinkedHashSet` all implement `SequencedCollection`
 
 ## Module 2: List Implementations
 - [ ] `ArrayList` - dynamic array, O(1) random access, O(n) insert/delete
@@ -43,6 +47,10 @@
 - [ ] `ConcurrentHashMap` (intro - detailed in Concurrency)
 - [ ] `Map.of()`, `Map.entry()` - immutable factory methods (Java 9+)
 - [ ] `compute()`, `merge()`, `computeIfAbsent()`, `getOrDefault()` (Java 8+)
+- [ ] **`NavigableMap`** interface: `floorKey()`, `ceilingKey()`, `lowerEntry()`, `higherEntry()`
+- [ ] **`NavigableMap`** range views: `headMap()`, `tailMap()`, `subMap()` with inclusive/exclusive bounds
+- [ ] **`NavigableSet`** interface: `floor()`, `ceiling()`, `lower()`, `higher()`, `descendingSet()`
+- [ ] `TreeMap` and `TreeSet` implement `NavigableMap`/`NavigableSet` - essential for range queries
 
 ## Module 6: Sorting & Ordering
 - [ ] `Comparable<T>` - natural ordering (`compareTo`)

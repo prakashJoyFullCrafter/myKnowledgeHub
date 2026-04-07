@@ -51,7 +51,7 @@
 - [ ] Custom exceptions
 - [ ] Exception hierarchy (`Throwable` -> `Error` / `Exception` -> `RuntimeException`)
 - [ ] Best practices: don't catch `Exception`, don't swallow exceptions
-![img.png](img.png)
+
 ## Module 7: Enums & Annotations
 - [ ] Enum basics, fields, methods, constructors
 - [ ] Enum with abstract methods
@@ -92,6 +92,50 @@
 - [ ] `var` keyword - local variable type inference (Java 10+)
 - [ ] Helpful `NullPointerException` messages (Java 14+)
 - [ ] Virtual threads preview (Java 21+)
+
+## Module 12: Regular Expressions
+- [ ] `Pattern` class - compiling regex patterns
+- [ ] `Matcher` class - `find()`, `matches()`, `group()`, `start()`, `end()`
+- [ ] Character classes: `[abc]`, `[a-z]`, `[^0-9]`, `\d`, `\w`, `\s`
+- [ ] Quantifiers: `*`, `+`, `?`, `{n}`, `{n,m}`, greedy vs reluctant vs possessive
+- [ ] Anchors: `^`, `$`, `\b` (word boundary)
+- [ ] Groups and capturing: `(abc)`, backreferences `\1`
+- [ ] Named groups: `(?<name>pattern)` and `matcher.group("name")`
+- [ ] Non-capturing groups: `(?:abc)`
+- [ ] Lookahead `(?=...)` and lookbehind `(?<=...)` (positive and negative)
+- [ ] `String` regex methods: `matches()`, `split()`, `replaceAll()`, `replaceFirst()`
+- [ ] `Pattern.compile()` flags: `CASE_INSENSITIVE`, `MULTILINE`, `DOTALL`, `COMMENTS`
+- [ ] **Pre-compile patterns**: `private static final Pattern PATTERN = Pattern.compile(...)` - avoid recompiling
+- [ ] **Catastrophic backtracking** (ReDoS) - how nested quantifiers cause exponential time
+- [ ] Performance: `Pattern` + `Matcher` vs `String.matches()` (avoid in loops)
+
+## Module 13: Process API
+- [ ] `ProcessBuilder` - creating and configuring OS processes
+- [ ] Setting command, arguments, working directory, environment variables
+- [ ] Redirecting stdin, stdout, stderr: `redirectInput()`, `redirectOutput()`, `redirectErrorStream()`
+- [ ] `Process.getInputStream()` / `getErrorStream()` - reading process output
+- [ ] `process.waitFor()` and `process.waitFor(timeout, unit)`
+- [ ] `process.destroyForcibly()` - killing processes
+- [ ] **`ProcessHandle`** (Java 9+) - inspecting running processes
+  - [ ] `ProcessHandle.current()` - current JVM process
+  - [ ] `ProcessHandle.allProcesses()` - stream of all OS processes
+  - [ ] `ProcessHandle.Info` - command, arguments, user, start time, CPU duration
+  - [ ] `process.toHandle().onExit()` - `CompletableFuture` for process completion
+- [ ] Piping processes: `ProcessBuilder.startPipeline()`
+- [ ] Security: never pass user input directly to `ProcessBuilder` - command injection risk
+
+## Module 14: Internationalization (i18n)
+- [ ] `Locale` class - language, country, variant: `Locale.US`, `new Locale("en", "GB")`
+- [ ] `Locale.getDefault()` and `Locale.setDefault()`
+- [ ] `ResourceBundle` - locale-specific property files (`messages_en.properties`, `messages_fr.properties`)
+- [ ] `ResourceBundle.getBundle("messages", locale)` - loading bundles
+- [ ] `MessageFormat` - parameterized messages: `MessageFormat.format("Hello {0}", name)`
+- [ ] `NumberFormat` - locale-aware number formatting: `NumberFormat.getCurrencyInstance(locale)`
+- [ ] `DecimalFormat` - custom number patterns
+- [ ] `DateTimeFormatter` with locales: `DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(locale)`
+- [ ] `Collator` - locale-sensitive string comparison and sorting
+- [ ] Unicode in Java: UTF-16 encoding, surrogate pairs, `Character.isLetter()` vs ASCII checks
+- [ ] Best practice: externalize all user-facing strings for localization
 
 ---
 
