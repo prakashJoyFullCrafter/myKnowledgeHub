@@ -3,5 +3,5 @@
 Asynchronous communication between services.
 
 ## Topics
-1. **Apache Kafka** - Event streaming, Kafka Streams, Schema Registry, Spring integration
-2. **RabbitMQ** - Message queuing, exchanges, patterns, comparison with Kafka
+1. **Apache Kafka** - Core concepts, Kafka Streams, Schema Registry, Exactly-Once, KSQL, Kafka Connect, Cluster & Operations, Spring integration (12 topics)
+2. **RabbitMQ** - Core concepts, patterns, DLQ, Spring integration, Clustering & HA, Kafka vs RabbitMQ comparison (15 topics)
