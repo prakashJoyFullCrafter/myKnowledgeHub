@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.pepbits</groupId>
+    <artifactId>java-knowledge-hub</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Java Knowledge Hub</name>
+    <description>Mono-repo for all Java hands-on projects — myKnowledgeHub</description>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <modules>
+        <module>01-core-fundamentals</module>
+        <module>02-oop-patterns</module>
+        <module>03-generics-lab</module>
+        <module>04-collections-deep-dive</module>
+        <module>05-concurrency-playground</module>
+        <module>06-jvm-internals</module>
+        <module>07-networking</module>
+        <module>08-reflection-proxies</module>
+        <module>09-modules-jpms</module>
+        <module>10-build-tools</module>
+        <module>11-best-practices</module>
+        <module>13-modern-java</module>
+    </modules>
+</project>
