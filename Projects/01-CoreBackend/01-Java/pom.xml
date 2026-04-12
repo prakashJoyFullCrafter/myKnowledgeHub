@@ -30,6 +30,6 @@
         <module>09-modules-jpms</module>
         <module>10-build-tools</module>
         <module>11-best-practices</module>
-        <module>13-modern-java</module>
+        <module>12-modern-java</module>
     </modules>
 </project>
