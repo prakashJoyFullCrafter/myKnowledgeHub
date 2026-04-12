@@ -750,7 +750,7 @@ ByteArrayResource resource = new ByteArrayResource(generatedPdfBytes);
 
 // UrlResource: wraps a URL — for files served from known URLs/classpath
 UrlResource resource = new UrlResource("file:///var/data/uploads/report.pdf");
-UrlResource classpath = new UrlResource("classpath:static/template.docx");
+UrlResource classpath = new UrlResource("classpath:static/JVMFrameworks-Spring-M104-.docx");
 // resource.exists(), resource.getFilename(), resource.contentLength() all work
 
 // FileSystemResource: wraps a File/Path — for local disk files
