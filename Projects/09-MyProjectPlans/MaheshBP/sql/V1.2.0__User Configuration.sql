@@ -45,7 +45,8 @@ CREATE TABLE users
         email IS NOT NULL OR phone IS NOT NULL
         )
 );
-
+ALTER TABLE users
+    ADD CONSTRAINT uq_users_id_user_type UNIQUE (id, user_type);
 
 CREATE TABLE auth_providers
 (
@@ -65,7 +66,8 @@ CREATE TABLE user_social_accounts
 (
     id               BIGSERIAL PRIMARY KEY,
     internal_id      character varying(200) NOT NULL UNIQUE,
-    user_id          BIGINT                 NOT NULL REFERENCES users (id),
+    user_id          BIGINT                 NOT NULL,
+    user_type        user_type              NOT NULL, -- add this
     provider_id      INT                    NOT NULL REFERENCES auth_providers (id),
     provider_user_id character varying(255) NOT NULL,
     email            character varying(255),
@@ -78,14 +80,16 @@ CREATE TABLE user_social_accounts
     created_by       BIGINT REFERENCES users (id),
     updated_by       BIGINT REFERENCES users (id),
     version          INT                    NOT NULL DEFAULT 1,
+
     -- same provider account cannot link to two users
     CONSTRAINT uq_provider_user UNIQUE (provider_id, provider_user_id),
-    -- social login only allowed for CUSTOMER
-    CONSTRAINT chk_social_customer_only CHECK (
-        (SELECT user_type
-         FROM users
-         WHERE id = user_id) = 'CUSTOMER'
-        )
+
+    -- social login only allowed for CUSTOMER (declarative)
+    CONSTRAINT chk_social_customer_only CHECK (user_type = 'CUSTOMER'),
+
+    -- user_type must match what is in users table
+    CONSTRAINT fk_social_accounts_user FOREIGN KEY (user_id, user_type)
+        REFERENCES users (id, user_type)
 );
 
 CREATE TABLE user_verification_requests
@@ -187,11 +191,6 @@ CREATE TABLE user_roles
     created_by  BIGINT REFERENCES users (id),
     updated_by  BIGINT REFERENCES users (id),
     version     INT                    NOT NULL DEFAULT 1,
-    CONSTRAINT chk_user_roles_customer_only CHECK (
-        (SELECT user_type
-         FROM users
-         WHERE id = user_id) = 'CUSTOMER'
-        ),
     UNIQUE (user_id, role_id)
 );
 
@@ -201,9 +200,9 @@ CREATE TABLE user_devices
     internal_id     character varying(200) NOT NULL UNIQUE,
     user_id         BIGINT                 NOT NULL REFERENCES users (id),
     device_token    TEXT                   NOT NULL UNIQUE,
-    device_type_id  INT                    NOT NULL REFERENCES device_types (id),
-    os_type_id      INT                    NOT NULL REFERENCES os_types (id),
-    browser_type_id INT REFERENCES browser_types (id),
+    device_type_id  INT                    NOT NULL REFERENCES core.device_types (id),
+    os_type_id      INT                    NOT NULL REFERENCES core.os_types (id),
+    browser_type_id INT REFERENCES core.browser_types (id),
     device_name     character varying(100),
     app_version     character varying(20),
     last_seen_at    TIMESTAMPTZ,

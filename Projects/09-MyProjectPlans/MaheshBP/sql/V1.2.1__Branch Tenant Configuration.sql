@@ -1,5 +1,5 @@
 set
-search_path to security;
+search_path to core;
 
 
 CREATE TABLE staff_profiles
@@ -7,7 +7,7 @@ CREATE TABLE staff_profiles
     id               BIGINT PRIMARY KEY,
     internal_id      character varying(200) NOT NULL UNIQUE,
     tenant_id        BIGINT                 NOT NULL REFERENCES tenants (id),
-    user_id          BIGINT REFERENCES users (id),
+    user_id          BIGINT REFERENCES security.users (id),
     first_name       character varying(100) NOT NULL,
     last_name        character varying(100),
     display_name     character varying(150),
@@ -21,8 +21,8 @@ CREATE TABLE staff_profiles
     status           character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
     created_at       TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
     updated_at       TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
-    created_by       BIGINT REFERENCES users (id),
-    updated_by       BIGINT REFERENCES users (id),
+    created_by       BIGINT REFERENCES security.users (id),
+    updated_by       BIGINT REFERENCES security.users (id),
     version          INT                    NOT NULL DEFAULT 1
 );
 
@@ -30,7 +30,7 @@ CREATE TABLE staff_media
 (
     id            BIGSERIAL PRIMARY KEY,
     internal_id   character varying(200) NOT NULL UNIQUE,
-    staff_id      BIGINT                 NOT NULL REFERENCES staff (id),
+    staff_id      BIGINT                 NOT NULL REFERENCES staff_profiles (id),
     media_type_id INT                    NOT NULL REFERENCES media_types (id),
     url           TEXT                   NOT NULL,
     alt_text      character varying(255),
@@ -38,8 +38,8 @@ CREATE TABLE staff_media
     status        character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
     created_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
     updated_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
-    created_by    BIGINT REFERENCES users (id),
-    updated_by    BIGINT REFERENCES users (id),
+    created_by    BIGINT REFERENCES security.users (id),
+    updated_by    BIGINT REFERENCES security.users (id),
     version       INT                    NOT NULL DEFAULT 1
 );
 
@@ -47,7 +47,7 @@ CREATE TABLE staff_branch_assignments
 (
     id             BIGSERIAL PRIMARY KEY,
     internal_id    character varying(200) NOT NULL UNIQUE,
-    staff_id       BIGINT                 NOT NULL REFERENCES staff (id),
+    staff_id       BIGINT                 NOT NULL REFERENCES staff_profiles (id),
     branch_id      BIGINT                 NOT NULL REFERENCES branches (id),
     is_primary     BOOLEAN                NOT NULL DEFAULT FALSE,
     assigned_from  DATE,
@@ -55,9 +55,9 @@ CREATE TABLE staff_branch_assignments
     status         character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
     created_at     TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
     updated_at     TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
-    created_by     BIGINT REFERENCES users (id),
-    updated_by     BIGINT REFERENCES users (id),
-    version        INT                    NOT NULL DEFAULT 1
+    created_by     BIGINT REFERENCES security.users (id),
+    updated_by     BIGINT REFERENCES security.users (id),
+    version        INT                    NOT NULL DEFAULT 1,
         UNIQUE (staff_id, branch_id)
 );
 
@@ -65,27 +65,22 @@ CREATE TABLE staff_roles
 (
     id          BIGSERIAL PRIMARY KEY,
     internal_id character varying(200) NOT NULL UNIQUE,
-    user_id     BIGINT                 NOT NULL REFERENCES users (id),
-    role_id     INT                    NOT NULL REFERENCES roles (id),
+    user_id     BIGINT                 NOT NULL REFERENCES security.users (id),
+    role_id     INT                    NOT NULL REFERENCES security.roles (id),
     tenant_id   BIGINT                 NOT NULL REFERENCES tenants (id),
     branch_id   BIGINT REFERENCES branches (id),                       -- NULL means all branches
-    assigned_by BIGINT                 NOT NULL REFERENCES users (id), -- who assigned this role
+    assigned_by BIGINT                 NOT NULL REFERENCES security.users (id), -- who assigned this role
     assigned_at TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
     expires_at  TIMESTAMPTZ,                                           -- optional role expiry
     status      character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
     created_at  TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
     updated_at  TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
-    created_by  BIGINT REFERENCES users (id),
-    updated_by  BIGINT REFERENCES users (id),
-    version     INT                    NOT NULL DEFAULT 1,
+    created_by  BIGINT REFERENCES security.users (id),
+    updated_by  BIGINT REFERENCES security.users (id),
+    version     INT                    NOT NULL DEFAULT 1
 
     -- only merchant side user types allowed here
-    CONSTRAINT chk_staff_roles_type CHECK (
-        (SELECT user_type
-         FROM users
-         WHERE id = user_id)
-            IN ('MERCHANT_OWNER', 'BRANCH_MANAGER', 'STAFF')
-        )
+
 );
 
 CREATE UNIQUE INDEX uq_staff_roles_with_branch
