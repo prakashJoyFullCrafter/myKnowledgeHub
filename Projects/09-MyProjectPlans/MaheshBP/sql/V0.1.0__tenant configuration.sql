@@ -111,7 +111,7 @@ CREATE TABLE tenant_settings
     UNIQUE (tenant_id, setting_key)
 );
 
-CREATE TABLE modulesettings
+CREATE TABLE modules
 (
     id            BIGSERIAL PRIMARY KEY,
     internal_id   character varying(200) NOT NULL UNIQUE,
