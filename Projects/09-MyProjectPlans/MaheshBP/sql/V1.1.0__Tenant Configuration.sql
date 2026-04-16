@@ -161,7 +161,7 @@ CREATE TABLE branch_addresses
     state_id      INT REFERENCES country_administrative_divisions (id),
     country_id    INT                    NOT NULL REFERENCES countries (id),
     postal_code   character varying(20),
-    --location      GEOGRAPHY(POINT, 4326) NOT NULL,
+    location      GEOGRAPHY(POINT, 4326) NOT NULL,
     status        character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
     created_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
     updated_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
@@ -254,7 +254,7 @@ CREATE TABLE branch_home_service_zones
     zone_type              character varying(20)  NOT NULL DEFAULT 'radius'
         CHECK (zone_type IN ('radius', 'polygon', 'locality_list')),
     radius_km              NUMERIC(8, 2),
-    --polygon                GEOGRAPHY(POLYGON, 4326),
+    polygon                GEOGRAPHY(POLYGON, 4326),
     locality_ids           JSONB                  NOT NULL DEFAULT '[]',
     travel_buffer_minutes  INT                    NOT NULL DEFAULT 30,
     home_service_surcharge NUMERIC(12, 2)         NOT NULL DEFAULT 0,
