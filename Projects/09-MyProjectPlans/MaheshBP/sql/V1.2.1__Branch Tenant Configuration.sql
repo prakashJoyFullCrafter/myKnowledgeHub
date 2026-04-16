@@ -4,16 +4,15 @@ search_path to core;
 
 CREATE TABLE staff_profiles
 (
-    id               BIGINT PRIMARY KEY,
+    id               BIGINT REFERENCES security.users (id) PRIMARY KEY,
     internal_id      character varying(200) NOT NULL UNIQUE,
     tenant_id        BIGINT                 NOT NULL REFERENCES tenants (id),
-    user_id          BIGINT REFERENCES security.users (id),
     first_name       character varying(100) NOT NULL,
     last_name        character varying(100),
     display_name     character varying(150),
     phone            character varying(30),
     email            character varying(255),
-    gender           character varying(20),
+    gender_id        INT                    NOT NULL references core.genders (id),
     date_of_birth    DATE,
     bio              TEXT,
     experience_years INT,
@@ -58,7 +57,7 @@ CREATE TABLE staff_branch_assignments
     created_by     BIGINT REFERENCES security.users (id),
     updated_by     BIGINT REFERENCES security.users (id),
     version        INT                    NOT NULL DEFAULT 1,
-        UNIQUE (staff_id, branch_id)
+    UNIQUE (staff_id, branch_id)
 );
 
 CREATE TABLE staff_roles
@@ -68,10 +67,10 @@ CREATE TABLE staff_roles
     user_id     BIGINT                 NOT NULL REFERENCES security.users (id),
     role_id     INT                    NOT NULL REFERENCES security.roles (id),
     tenant_id   BIGINT                 NOT NULL REFERENCES tenants (id),
-    branch_id   BIGINT REFERENCES branches (id),                       -- NULL means all branches
+    branch_id   BIGINT REFERENCES branches (id),                                -- NULL means all branches
     assigned_by BIGINT                 NOT NULL REFERENCES security.users (id), -- who assigned this role
     assigned_at TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
-    expires_at  TIMESTAMPTZ,                                           -- optional role expiry
+    expires_at  TIMESTAMPTZ,                                                    -- optional role expiry
     status      character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
     created_at  TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
     updated_at  TIMESTAMPTZ            NOT NULL DEFAULT NOW(),

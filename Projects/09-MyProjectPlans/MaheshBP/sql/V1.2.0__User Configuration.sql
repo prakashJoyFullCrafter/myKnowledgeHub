@@ -114,14 +114,13 @@ CREATE TABLE user_verification_requests
 ----Profiles --------------------
 CREATE TABLE user_profiles
 (
-    id            BIGINT PRIMARY KEY,
+    id            BIGINT PRIMARY KEY REFERENCES users (id) ON DELETE CASCADE,
     internal_id   character varying(200) NOT NULL UNIQUE,
-    user_id       BIGINT                 NOT NULL UNIQUE REFERENCES users (id),
     first_name    character varying(100),
     last_name     character varying(100),
     display_name  character varying(150), -- for customer facing display
     avatar_url    TEXT,                   -- profile photo
-    gender        character varying(10) CHECK (gender IN ('MALE', 'FEMALE', 'OTHER')),
+    gender_id     INT                    NOT NULL references core.genders (id),
     date_of_birth DATE,
     status        character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
     created_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),

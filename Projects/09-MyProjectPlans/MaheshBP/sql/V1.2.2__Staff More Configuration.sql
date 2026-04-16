@@ -66,7 +66,7 @@ CREATE TABLE staff_leaves
     reason        TEXT,
     approved_by   BIGINT REFERENCES security.users (id),
     leave_status  character varying(20)  NOT NULL DEFAULT 'pending'
-        CHECK (status IN ('pending', 'approved', 'rejected', 'cancelled')),
+        CHECK (leave_status IN ('pending', 'approved', 'rejected', 'cancelled')),
     status        character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
     created_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
     updated_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),

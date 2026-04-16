@@ -29,7 +29,7 @@ CREATE TABLE tenant_subscriptions
     tenant_id            BIGINT                 NOT NULL REFERENCES tenants (id),
     plan_id              INT                    NOT NULL REFERENCES subscription_plans (id),
     subscription_status  character varying(30)  NOT NULL DEFAULT 'trial'
-        CHECK (status IN ('trial', 'active', 'grace', 'suspended', 'cancelled', 'expired')),
+        CHECK (subscription_status IN ('trial', 'active', 'grace', 'suspended', 'cancelled', 'expired')),
     billing_interval     character varying(10)  NOT NULL DEFAULT 'monthly'
         CHECK (billing_interval IN ('monthly', 'annually')),
     current_period_start DATE                   NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE subscription_invoices
     tax_amount             NUMERIC(12, 2)         NOT NULL DEFAULT 0,
     total_amount           NUMERIC(12, 2)         NOT NULL,
     subscription_status    character varying(20)  NOT NULL DEFAULT 'pending'
-        CHECK (status IN ('pending', 'paid', 'failed', 'void')),
+        CHECK (subscription_status IN ('pending', 'paid', 'failed', 'void')),
     due_date               DATE                   NOT NULL,
     paid_at                TIMESTAMPTZ,
     invoice_number         character varying(50) UNIQUE,
