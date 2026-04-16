@@ -1,5 +1,3 @@
-
-
 CREATE TABLE branch_services
 (
     id          BIGSERIAL PRIMARY KEY,
@@ -14,4 +12,24 @@ CREATE TABLE branch_services
     updated_by  BIGINT,
     version     INT                    NOT NULL DEFAULT 1,
     UNIQUE (branch_id, service_id)
+);
+
+
+CREATE TABLE staff_commissions
+(
+    id                BIGSERIAL PRIMARY KEY,
+    internal_id       character varying(200) NOT NULL UNIQUE,
+    staff_id          BIGINT                 NOT NULL REFERENCES staff_profiles (id),
+    branch_service_id BIGINT REFERENCES branch_services (id),
+    commission_type   character varying(10)  NOT NULL DEFAULT 'percent'
+        CHECK (commission_type IN ('percent', 'flat')),
+    commission_value  NUMERIC(8, 4)          NOT NULL,
+    valid_from        DATE,
+    valid_until       DATE,
+    status            character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at        TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at        TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by        BIGINT REFERENCES security.users (id),
+    updated_by        BIGINT REFERENCES security.users (id),
+    version           INT                    NOT NULL DEFAULT 1
 );

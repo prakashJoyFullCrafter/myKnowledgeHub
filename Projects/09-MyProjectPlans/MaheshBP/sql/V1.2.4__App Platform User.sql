@@ -32,7 +32,7 @@ VALUES ('USR-ADM-001',
         'prakjm@gmail.com',
         TRUE, -- admin email pre-verified
         NOW(),
-        crypt('Admin@1234', gen_salt('bf')), -- bcrypt hash, change password after first login
+        '$2a$12$2yOChyhSuJm/naTBUjGZb.6d6mu1NsXS8XWRFousQfRTwzy0ZQtWW', -- bcrypt hash, change password after first login
         NULL,
         'A',
         NOW(),
@@ -52,7 +52,7 @@ VALUES ('USR-ADM-001',
         'mahesh@gmail.com',
         TRUE,
         NOW(),
-        crypt('Admin@1234', gen_salt('bf')),
+        '$2a$12$2yOChyhSuJm/naTBUjGZb.6d6mu1NsXS8XWRFousQfRTwzy0ZQtWW',
         NULL,
         'A',
         NOW(),
