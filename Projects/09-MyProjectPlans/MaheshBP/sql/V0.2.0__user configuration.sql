@@ -119,7 +119,7 @@ CREATE TABLE user_verification_requests
 ----Profiles --------------------
 CREATE TABLE user_profiles
 (
-    id            BIGSERIAL PRIMARY KEY,
+    id            BIGINT PRIMARY KEY,
     internal_id   character varying(200) NOT NULL UNIQUE,
     user_id       BIGINT                 NOT NULL UNIQUE REFERENCES users (id),
     first_name    character varying(100),
@@ -137,12 +137,20 @@ CREATE TABLE user_profiles
 );
 
 
+
 CREATE TABLE staff_profiles
 (
-    id               BIGSERIAL PRIMARY KEY,
+    id               BIGINT PRIMARY KEY,
     internal_id      character varying(200) NOT NULL UNIQUE,
-    tenant_id        BIGINT                 NOT NULL REFERENCES core.tenants (id),
-    user_id          BIGINT                 NOT NULL UNIQUE REFERENCES users (id),
+    tenant_id        BIGINT                 NOT NULL REFERENCES tenants (id),
+    user_id          BIGINT REFERENCES users (id),
+    first_name       character varying (100)           NOT NULL,
+    last_name        character varying (100),
+    display_name     character varying (150),
+    phone            character varying (30),
+    email            character varying (255),
+    gender           character varying (20),
+    date_of_birth    DATE,
     bio              TEXT,
     experience_years INT,
     specialties      JSONB                  NOT NULL DEFAULT '[]',
@@ -152,6 +160,41 @@ CREATE TABLE staff_profiles
     created_by       BIGINT REFERENCES users (id),
     updated_by       BIGINT REFERENCES users (id),
     version          INT                    NOT NULL DEFAULT 1
+);
+
+CREATE TABLE staff_media
+(
+    id            BIGSERIAL PRIMARY KEY,
+    internal_id   character varying(200) NOT NULL UNIQUE,
+    staff_id      BIGINT                 NOT NULL REFERENCES staff (id),
+    media_type_id INT                    NOT NULL REFERENCES media_types (id),
+    url           TEXT                   NOT NULL,
+    alt_text      character varying (255),
+    display_order INT                    NOT NULL DEFAULT 0,
+    status        character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by    BIGINT REFERENCES users (id),
+    updated_by    BIGINT REFERENCES users (id),
+    version       INT                    NOT NULL DEFAULT 1
+);
+
+CREATE TABLE staff_branch_assignments
+(
+    id             BIGSERIAL PRIMARY KEY,
+    internal_id    character varying(200) NOT NULL UNIQUE,
+    staff_id       BIGINT                 NOT NULL REFERENCES staff (id),
+    branch_id      BIGINT                 NOT NULL REFERENCES branches (id),
+    is_primary     BOOLEAN                NOT NULL DEFAULT FALSE,
+    assigned_from  DATE,
+    assigned_until DATE,
+    status         character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at     TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at     TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by     BIGINT REFERENCES users (id),
+    updated_by     BIGINT REFERENCES users (id),
+    version        INT                    NOT NULL DEFAULT 1
+        UNIQUE (staff_id, branch_id)
 );
 
 
@@ -481,7 +524,7 @@ FROM (VALUES
 CREATE TABLE staff_roles
 (
     id          BIGSERIAL PRIMARY KEY,
-    internal_id VARCHAR(200) NOT NULL UNIQUE,
+    internal_id character varying (200) NOT NULL UNIQUE,
     user_id     BIGINT       NOT NULL REFERENCES users (id),
     role_id     INT          NOT NULL REFERENCES roles (id),
     tenant_id   BIGINT       NOT NULL REFERENCES tenants (id),
@@ -489,7 +532,7 @@ CREATE TABLE staff_roles
     assigned_by BIGINT       NOT NULL REFERENCES users (id), -- who assigned this role
     assigned_at TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
     expires_at  TIMESTAMPTZ,                                 -- optional role expiry
-    status      VARCHAR(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    status      character varying (1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
     created_at  TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
     updated_at  TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
     created_by  BIGINT REFERENCES users (id),
@@ -571,4 +614,141 @@ CREATE TABLE user_sessions
     created_by    BIGINT REFERENCES users (id),
     updated_by    BIGINT REFERENCES users (id),
     version       INT                    NOT NULL DEFAULT 1
+);
+
+
+CREATE TABLE staff_working_hours
+(
+    id          BIGSERIAL PRIMARY KEY,
+    internal_id character varying(200) NOT NULL UNIQUE,
+    staff_id    BIGINT                 NOT NULL REFERENCES staff (id),
+    branch_id   BIGINT                 NOT NULL REFERENCES branches (id),
+    day_of_week SMALLINT               NOT NULL CHECK (day_of_week BETWEEN 0 AND 6),
+    start_time  TIME                   NOT NULL,
+    end_time    TIME                   NOT NULL,
+    is_day_off  BOOLEAN                NOT NULL DEFAULT FALSE,
+    status      character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at  TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by  BIGINT REFERENCES users (id),
+    updated_by  BIGINT REFERENCES users (id),
+    version     INT                    NOT NULL DEFAULT 1,
+    UNIQUE (staff_id, branch_id, day_of_week)
+);
+
+CREATE TABLE staff_availability_overrides
+(
+    id                    BIGSERIAL PRIMARY KEY,
+    internal_id           character varying(200) NOT NULL UNIQUE,
+    staff_id              BIGINT                 NOT NULL REFERENCES staff (id),
+    branch_id             BIGINT                 NOT NULL REFERENCES branches (id),
+    is_accepting_bookings BOOLEAN                NOT NULL DEFAULT TRUE,
+    override_from         TIMESTAMPTZ,
+    override_until        TIMESTAMPTZ,
+    reason                character varying (255),
+    status                character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at            TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at            TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by            BIGINT REFERENCES users (id),
+    updated_by            BIGINT REFERENCES users (id),
+    version               INT                    NOT NULL DEFAULT 1
+);
+
+CREATE TABLE break_types
+(
+    id          SERIAL PRIMARY KEY,
+    internal_id character varying(200) NOT NULL UNIQUE,
+    type_key    character varying (30)            NOT NULL UNIQUE,
+    label       character varying (100)           NOT NULL,
+    status      character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at  TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by  BIGINT REFERENCES users (id),
+    updated_by  BIGINT REFERENCES users (id),
+    version     INT                    NOT NULL DEFAULT 1
+);
+CREATE TABLE staff_breaks
+(
+    id            BIGSERIAL PRIMARY KEY,
+    internal_id   character varying(200) NOT NULL UNIQUE,
+    staff_id      BIGINT                 NOT NULL REFERENCES staff (id),
+    branch_id     BIGINT                 NOT NULL REFERENCES branches (id),
+    break_type_id INT REFERENCES break_types (id),
+    break_date    DATE                   NOT NULL,
+    start_time    TIME                   NOT NULL,
+    end_time      TIME                   NOT NULL,
+    status        character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by    BIGINT REFERENCES users (id),
+    updated_by    BIGINT REFERENCES users (id),
+    version       INT                    NOT NULL DEFAULT 1
+);
+CREATE TABLE leave_types
+(
+    id          SERIAL PRIMARY KEY,
+    internal_id character varying(200) NOT NULL UNIQUE,
+    type_key    character varying (30)            NOT NULL UNIQUE,
+    label       character varying (100)           NOT NULL,
+    is_paid     BOOLEAN                NOT NULL DEFAULT TRUE,
+    status      character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at  TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by  BIGINT REFERENCES users (id),
+    updated_by  BIGINT REFERENCES users (id),
+    version     INT                    NOT NULL DEFAULT 1
+);
+CREATE TABLE staff_leaves
+(
+    id            BIGSERIAL PRIMARY KEY,
+    internal_id   character varying(200) NOT NULL UNIQUE,
+    staff_id      BIGINT                 NOT NULL REFERENCES staff (id),
+    leave_type_id INT                    NOT NULL REFERENCES leave_types (id),
+    start_date    DATE                   NOT NULL,
+    end_date      DATE                   NOT NULL,
+    reason        TEXT,
+    approved_by   BIGINT REFERENCES users (id),
+    leave_status  character varying (20)            NOT NULL DEFAULT 'pending'
+        CHECK (status IN ('pending', 'approved', 'rejected', 'cancelled')),
+    status        character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by    BIGINT REFERENCES users (id),
+    updated_by    BIGINT REFERENCES users (id),
+    version       INT                    NOT NULL DEFAULT 1
+);
+
+CREATE TABLE staff_commissions
+(
+    id                BIGSERIAL PRIMARY KEY,
+    internal_id       character varying(200) NOT NULL UNIQUE,
+    staff_id          BIGINT                 NOT NULL REFERENCES staff (id),
+    branch_service_id BIGINT REFERENCES branch_services (id),
+    commission_type   character varying (10)            NOT NULL DEFAULT 'percent'
+        CHECK (commission_type IN ('percent', 'flat')),
+    commission_value  NUMERIC(8, 4)          NOT NULL,
+    valid_from        DATE,
+    valid_until       DATE,
+    status            character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at        TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at        TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by        BIGINT REFERENCES users (id),
+    updated_by        BIGINT REFERENCES users (id),
+    version           INT                    NOT NULL DEFAULT 1
+);
+
+
+CREATE TABLE staff_home_service_eligibility
+(
+    id              BIGSERIAL PRIMARY KEY,
+    internal_id     character varying(200) NOT NULL UNIQUE,
+    staff_id        BIGINT                 NOT NULL UNIQUE REFERENCES staff (id),
+    is_eligible     BOOLEAN                NOT NULL DEFAULT FALSE,
+    max_distance_km NUMERIC(8, 2),
+    status          character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at      TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at      TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by      BIGINT REFERENCES users (id),
+    updated_by      BIGINT REFERENCES users (id),
+    version         INT                    NOT NULL DEFAULT 1
 );

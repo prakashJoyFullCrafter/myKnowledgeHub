@@ -127,7 +127,7 @@ CREATE TABLE modules
     UNIQUE (module_key, setting_key)
 )
 
-    CREATE TABLE tenant_modules
+CREATE TABLE tenant_modules
 (
     id          BIGSERIAL PRIMARY KEY,
     internal_id character varying(200) NOT NULL UNIQUE,
@@ -363,3 +363,35 @@ CREATE TABLE branch_amenity_assignments
     UNIQUE (branch_id, amenity_id)
 );
 
+CREATE TABLE media_types
+(
+    id                 SERIAL PRIMARY KEY,
+    internal_id        character varying(200) NOT NULL UNIQUE,
+    type_key           VARCHAR(30)            NOT NULL UNIQUE,
+    label              VARCHAR(100)           NOT NULL,
+    allowed_extensions JSONB                  NOT NULL DEFAULT '[]',
+    max_size_mb        INT                    NOT NULL DEFAULT 10,
+    status             character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at         TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at         TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by         BIGINT,
+    updated_by         BIGINT,
+    version            INT                    NOT NULL DEFAULT 1
+);
+CREATE TABLE branch_media
+(
+    id            BIGSERIAL PRIMARY KEY,
+    internal_id   character varying(200) NOT NULL UNIQUE,
+    branch_id     BIGINT                 NOT NULL REFERENCES branches (id),
+    media_type_id INT                    NOT NULL REFERENCES media_types (id),
+    language_id   INT REFERENCES languages (id),
+    url           TEXT                   NOT NULL,
+    caption       character varying(255),
+    display_order INT                    NOT NULL DEFAULT 0,
+    status        character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by    BIGINT,
+    updated_by    BIGINT,
+    version       INT                    NOT NULL DEFAULT 1
+);
