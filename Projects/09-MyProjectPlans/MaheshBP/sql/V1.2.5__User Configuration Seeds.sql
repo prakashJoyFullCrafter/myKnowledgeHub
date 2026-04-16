@@ -1,3 +1,4 @@
+set search_path to security;
 INSERT INTO security.auth_providers (internal_id, provider_key, name, status, created_at, updated_at, version)
 VALUES ('AUTH-PRV-001', 'GOOGLE', 'Google', 'A', NOW(), NOW(), 1),
        ('AUTH-PRV-002', 'APPLE', 'Apple', 'A', NOW(), NOW(), 1),
