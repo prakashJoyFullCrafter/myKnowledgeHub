@@ -156,17 +156,104 @@ VALUES ('STF-TIER-001', 'Trainee', 1, 'A', NOW(), NOW(), 1),
        ('STF-TIER-005', 'Director', 5, 'A', NOW(), NOW(), 1);
 
 INSERT INTO service_tiers
-(internal_id, tier_key, name, description, min_spend, min_bookings, discount_percent, priority_booking, display_order, status, created_at, updated_at, version)
-VALUES
-    ('CUST-TIER-001', 'NORMAL',  'Normal',  'Default tier for all new customers',         0,    0,  0.00, FALSE, 1, 'A', NOW(), NOW(), 1),
-    ('CUST-TIER-002', 'SILVER',  'Silver',  'Customers with moderate booking history',    500,  5,  5.00, FALSE, 2, 'A', NOW(), NOW(), 1),
-    ('CUST-TIER-003', 'GOLD',    'Gold',    'Loyal customers with high booking history',  1500, 15, 10.00, FALSE, 3, 'A', NOW(), NOW(), 1),
-    ('CUST-TIER-004', 'VIP',     'VIP',     'High value customers with premium spend',    3000, 30, 15.00, TRUE,  4, 'A', NOW(), NOW(), 1),
-    ('CUST-TIER-005', 'PREMIUM', 'Premium', 'Top tier customers with exclusive benefits', 5000, 50, 20.00, TRUE,  5, 'A', NOW(), NOW(), 1);
+(internal_id, tier_key, name, description, min_spend, min_bookings, discount_percent, priority_booking, display_order,
+ status, created_at, updated_at, version)
+VALUES ('CUST-TIER-001', 'NORMAL', 'Normal', 'Default tier for all new customers', 0, 0, 0.00, FALSE, 1, 'A', NOW(),
+        NOW(), 1),
+       ('CUST-TIER-002', 'SILVER', 'Silver', 'Customers with moderate booking history', 500, 5, 5.00, FALSE, 2, 'A',
+        NOW(), NOW(), 1),
+       ('CUST-TIER-003', 'GOLD', 'Gold', 'Loyal customers with high booking history', 1500, 15, 10.00, FALSE, 3, 'A',
+        NOW(), NOW(), 1),
+       ('CUST-TIER-004', 'VIP', 'VIP', 'High value customers with premium spend', 3000, 30, 15.00, TRUE, 4, 'A', NOW(),
+        NOW(), 1),
+       ('CUST-TIER-005', 'PREMIUM', 'Premium', 'Top tier customers with exclusive benefits', 5000, 50, 20.00, TRUE, 5,
+        'A', NOW(), NOW(), 1);
 
 
 INSERT INTO pricing_scope (internal_id, name, status, created_at, updated_at, version)
+VALUES ('PRC-SCP-001', 'TENANT', 'A', NOW(), NOW(), 1),
+       ('PRC-SCP-002', 'BUSINESS', 'A', NOW(), NOW(), 1),
+       ('PRC-SCP-003', 'BRANCH', 'A', NOW(), NOW(), 1);
+INSERT INTO service_tags (internal_id, tag_key, name, status, version)
 VALUES
-    ('PRC-SCP-001', 'TENANT',   'A', NOW(), NOW(), 1),
-    ('PRC-SCP-002', 'BUSINESS', 'A', NOW(), NOW(), 1),
-    ('PRC-SCP-003', 'BRANCH',   'A', NOW(), NOW(), 1);
+
+    -- Trending / Popularity
+    ('SVC-TAG-001', 'TRENDING', 'Trending', 'A', 1),
+    ('SVC-TAG-002', 'BESTSELLER', 'Best Seller', 'A', 1),
+    ('SVC-TAG-003', 'NEW', 'New', 'A', 1),
+    ('SVC-TAG-004', 'POPULAR', 'Popular', 'A', 1),
+    ('SVC-TAG-005', 'STAFF_PICK', 'Staff Pick', 'A', 1),
+
+    -- Pricing
+    ('SVC-TAG-006', 'OFFER', 'Offer', 'A', 1),
+    ('SVC-TAG-007', 'LIMITED_TIME', 'Limited Time', 'A', 1),
+    ('SVC-TAG-008', 'VALUE_PACK', 'Value Pack', 'A', 1),
+    ('SVC-TAG-009', 'PREMIUM', 'Premium', 'A', 1),
+    ('SVC-TAG-010', 'BUDGET_FRIENDLY', 'Budget Friendly', 'A', 1),
+
+    -- Service Type
+    ('SVC-TAG-011', 'HOME_SERVICE', 'Home Service', 'A', 1),
+    ('SVC-TAG-012', 'IN_STORE', 'In Store', 'A', 1),
+    ('SVC-TAG-013', 'EXPRESS', 'Express', 'A', 1),
+    ('SVC-TAG-014', 'APPOINTMENT_ONLY', 'Appointment Only', 'A', 1),
+    ('SVC-TAG-015', 'WALK_IN', 'Walk In', 'A', 1),
+
+    -- Gender
+    ('SVC-TAG-016', 'MALE', 'Male', 'A', 1),
+    ('SVC-TAG-017', 'FEMALE', 'Female', 'A', 1),
+    ('SVC-TAG-018', 'UNISEX', 'Unisex', 'A', 1),
+    ('SVC-TAG-019', 'KIDS', 'Kids', 'A', 1),
+
+    -- Occasion
+    ('SVC-TAG-020', 'BRIDAL', 'Bridal', 'A', 1),
+    ('SVC-TAG-021', 'PARTY', 'Party', 'A', 1),
+    ('SVC-TAG-022', 'PROM', 'Prom', 'A', 1),
+    ('SVC-TAG-023', 'GRADUATION', 'Graduation', 'A', 1),
+    ('SVC-TAG-024', 'CORPORATE', 'Corporate', 'A', 1),
+    ('SVC-TAG-025', 'EVERYDAY', 'Everyday', 'A', 1),
+
+    -- Hair
+    ('SVC-TAG-026', 'HAIR_COLOR', 'Hair Color', 'A', 1),
+    ('SVC-TAG-027', 'HAIR_TREATMENT', 'Hair Treatment', 'A', 1),
+    ('SVC-TAG-028', 'HAIR_EXTENSION', 'Hair Extension', 'A', 1),
+    ('SVC-TAG-029', 'KERATIN', 'Keratin', 'A', 1),
+    ('SVC-TAG-030', 'BALAYAGE', 'Balayage', 'A', 1),
+    ('SVC-TAG-031', 'HIGHLIGHTS', 'Highlights', 'A', 1),
+    ('SVC-TAG-032', 'SCALP_TREATMENT', 'Scalp Treatment', 'A', 1),
+
+    -- Skin
+    ('SVC-TAG-033', 'ANTI_AGING', 'Anti Aging', 'A', 1),
+    ('SVC-TAG-034', 'ACNE_TREATMENT', 'Acne Treatment', 'A', 1),
+    ('SVC-TAG-035', 'BRIGHTENING', 'Brightening', 'A', 1),
+    ('SVC-TAG-036', 'HYDRATING', 'Hydrating', 'A', 1),
+    ('SVC-TAG-037', 'ORGANIC', 'Organic', 'A', 1),
+    ('SVC-TAG-038', 'SENSITIVE_SKIN', 'Sensitive Skin', 'A', 1),
+
+    -- Nails
+    ('SVC-TAG-039', 'GEL', 'Gel', 'A', 1),
+    ('SVC-TAG-040', 'ACRYLIC', 'Acrylic', 'A', 1),
+    ('SVC-TAG-041', 'NAIL_ART', 'Nail Art', 'A', 1),
+    ('SVC-TAG-042', 'FRENCH', 'French', 'A', 1),
+    ('SVC-TAG-043', 'OMBRE', 'Ombre', 'A', 1),
+
+    -- Wellness
+    ('SVC-TAG-044', 'RELAXING', 'Relaxing', 'A', 1),
+    ('SVC-TAG-045', 'DEEP_TISSUE', 'Deep Tissue', 'A', 1),
+    ('SVC-TAG-046', 'AROMATHERAPY', 'Aromatherapy', 'A', 1),
+    ('SVC-TAG-047', 'HOT_STONE', 'Hot Stone', 'A', 1),
+    ('SVC-TAG-048', 'COUPLES', 'Couples', 'A', 1),
+
+    -- Duration
+    ('SVC-TAG-049', 'QUICK_30MIN', 'Quick 30 Min', 'A', 1),
+    ('SVC-TAG-050', 'ONE_HOUR', 'One Hour', 'A', 1),
+    ('SVC-TAG-051', 'HALF_DAY', 'Half Day', 'A', 1),
+    ('SVC-TAG-052', 'FULL_DAY', 'Full Day', 'A', 1),
+
+    -- Certification / Quality
+    ('SVC-TAG-053', 'CERTIFIED', 'Certified', 'A', 1),
+    ('SVC-TAG-054', 'AWARD_WINNING', 'Award Winning', 'A', 1),
+    ('SVC-TAG-055', 'LUXURY', 'Luxury', 'A', 1),
+    ('SVC-TAG-056', 'ECO_FRIENDLY', 'Eco Friendly', 'A', 1),
+    ('SVC-TAG-057', 'CRUELTY_FREE', 'Cruelty Free', 'A', 1),
+    ('SVC-TAG-058', 'VEGAN', 'Vegan', 'A', 1);
+
