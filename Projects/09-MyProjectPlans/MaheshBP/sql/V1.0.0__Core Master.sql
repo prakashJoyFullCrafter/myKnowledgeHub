@@ -6,7 +6,7 @@ CREATE TABLE timezones
     id           SERIAL PRIMARY KEY,
     internal_id  character varying(200) NOT NULL UNIQUE,
     timezone_key character varying(100) NOT NULL UNIQUE,
-    label        character varying(150) NOT NULL,
+    name         character varying(150) NOT NULL,
     utc_offset   character varying(10)  NOT NULL,
     status       character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
     created_at   TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
@@ -34,6 +34,22 @@ CREATE TABLE countries
     version              INT                    NOT NULL DEFAULT 1
 );
 
+CREATE TABLE nationalities
+(
+    id          SERIAL PRIMARY KEY,
+    internal_id VARCHAR(200) NOT NULL UNIQUE,
+    country_id  INT          NOT NULL REFERENCES countries (id),
+    name        VARCHAR(150) NOT NULL,
+    native_name VARCHAR(150),
+    adjective   VARCHAR(150),
+    status      VARCHAR(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at  TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+    created_by  BIGINT,
+    updated_by  BIGINT,
+    version     INT          NOT NULL DEFAULT 1
+);
+
 CREATE TABLE country_administrative_divisions_types
 (
     id          SERIAL PRIMARY KEY,
@@ -45,7 +61,7 @@ CREATE TABLE country_administrative_divisions_types
     created_by  BIGINT,
     updated_by  BIGINT,
     version     INT                    NOT NULL DEFAULT 1
-)
+);
 CREATE TABLE country_administrative_divisions_levels
 (
     id          SERIAL PRIMARY KEY,
@@ -57,7 +73,7 @@ CREATE TABLE country_administrative_divisions_levels
     created_by  BIGINT,
     updated_by  BIGINT,
     version     INT                    NOT NULL DEFAULT 1
-)
+);
 
 CREATE TABLE country_administrative_divisions
 (
@@ -150,7 +166,7 @@ CREATE TABLE address_types
 CREATE TABLE country_calling_codes
 (
     id           SERIAL PRIMARY KEY,
-    internal_id  character varying(200) NOT NULL UNIQUE, ,
+    internal_id  character varying(200) NOT NULL UNIQUE,
     country_id   INT                    NOT NULL REFERENCES countries (id),
     calling_code character varying(10)  NOT NULL,
     status       character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
@@ -232,7 +248,7 @@ CREATE TABLE country_currency_mappings
     updated_by  BIGINT,
     version     INT                    NOT NULL DEFAULT 1,
     unique (country_id, currency_id)
-)
+);
 
 CREATE TABLE currency_exchange_rates
 (
@@ -249,3 +265,182 @@ CREATE TABLE currency_exchange_rates
     version          INT                    NOT NULL DEFAULT 1
 );
 
+CREATE TABLE device_types
+(
+    id            SERIAL PRIMARY KEY,
+    internal_id   VARCHAR(200) NOT NULL UNIQUE,
+    name          VARCHAR(100) NOT NULL, -- iOS, Android, Web
+    display_order INT          NOT NULL DEFAULT 0,
+    status        VARCHAR(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at    TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+    updated_at    TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+    created_by    BIGINT,
+    updated_by    BIGINT,
+    version       INT          NOT NULL DEFAULT 1
+);
+
+CREATE TABLE browser_types
+(
+    id            SERIAL PRIMARY KEY,
+    internal_id   VARCHAR(200) NOT NULL UNIQUE,
+    name          VARCHAR(100) NOT NULL, -- iOS, Android, Web
+    display_order INT          NOT NULL DEFAULT 0,
+    status        VARCHAR(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at    TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+    updated_at    TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+    created_by    BIGINT,
+    updated_by    BIGINT,
+    version       INT          NOT NULL DEFAULT 1
+);
+
+CREATE TABLE os_types
+(
+    id            SERIAL PRIMARY KEY,
+    internal_id   VARCHAR(200) NOT NULL UNIQUE,
+    name          VARCHAR(100) NOT NULL, -- iOS, Android, Web
+    display_order INT          NOT NULL DEFAULT 0,
+    status        VARCHAR(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at    TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+    updated_at    TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+    created_by    BIGINT,
+    updated_by    BIGINT,
+    version       INT          NOT NULL DEFAULT 1
+);
+
+CREATE TABLE media_types
+(
+    id                 SERIAL PRIMARY KEY,
+    internal_id        character varying(200) NOT NULL UNIQUE,
+    type_key           character varying(30)  NOT NULL UNIQUE,
+    name               character varying(100) NOT NULL,
+    allowed_extensions JSONB                  NOT NULL DEFAULT '[]',
+    max_size_mb        INT                    NOT NULL DEFAULT 10,
+    status             character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at         TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at         TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by         BIGINT,
+    updated_by         BIGINT,
+    version            INT                    NOT NULL DEFAULT 1
+);
+
+
+CREATE TABLE service_tiers
+(
+    id               SERIAL PRIMARY KEY,
+    internal_id      VARCHAR(200)   NOT NULL UNIQUE,
+    tier_key         VARCHAR(30)    NOT NULL UNIQUE,
+    name             VARCHAR(100)   NOT NULL,
+    description      TEXT,
+    min_spend        NUMERIC(12, 2) NOT NULL DEFAULT 0,     -- minimum spend to qualify
+    min_bookings     INT            NOT NULL DEFAULT 0,     -- minimum bookings to qualify
+    discount_percent NUMERIC(5, 2)  NOT NULL DEFAULT 0,     -- discount applicable
+    priority_booking BOOLEAN        NOT NULL DEFAULT FALSE, -- early access to slots
+    display_order    INT            NOT NULL DEFAULT 0,
+    status           VARCHAR(1)     NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at       TIMESTAMPTZ    NOT NULL DEFAULT NOW(),
+    updated_at       TIMESTAMPTZ    NOT NULL DEFAULT NOW(),
+    created_by       BIGINT,
+    updated_by       BIGINT,
+    version          INT            NOT NULL DEFAULT 1
+);
+
+CREATE TABLE pricing_scope
+(
+    id          SERIAL PRIMARY KEY,
+    internal_id character varying(200) NOT NULL UNIQUE,
+    name        character varying(100) NOT NULL,
+    status      character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at  TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by  BIGINT,
+    updated_by  BIGINT,
+    version     INT                    NOT NULL DEFAULT 1
+);
+
+CREATE TABLE customer_tiers
+(
+    id          SERIAL PRIMARY KEY,
+    internal_id character varying(200) NOT NULL UNIQUE,
+    name        character varying(100) NOT NULL,
+    status      character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at  TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by  BIGINT,
+    updated_by  BIGINT,
+    version     INT                    NOT NULL DEFAULT 1
+);
+
+CREATE TABLE modules
+(
+    id            BIGSERIAL PRIMARY KEY,
+    internal_id   character varying(200) NOT NULL UNIQUE,
+    module_key    character varying(100) NOT NULL,
+    setting_key   character varying(100) NOT NULL,
+    setting_value TEXT,
+    status        character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by    BIGINT,
+    updated_by    BIGINT,
+    version       INT                    NOT NULL DEFAULT 1,
+    UNIQUE (module_key, setting_key)
+);
+
+CREATE TABLE subscription_plans
+(
+    id                    SERIAL PRIMARY KEY,
+    internal_id           character varying(200) NOT NULL UNIQUE,
+    plan_key              character varying(50)  NOT NULL UNIQUE,
+    name                  character varying(100) NOT NULL,
+    description           TEXT,
+    price_monthly         NUMERIC(12, 2),
+    price_annually        NUMERIC(12, 2),
+    currency_id           INT                    NOT NULL REFERENCES currencies (id),
+    branch_limit          INT,
+    staff_limit           INT,
+    booking_limit_monthly INT,
+    commission_rate       NUMERIC(5, 4)          NOT NULL DEFAULT 0.06,
+    feature_flags         JSONB                  NOT NULL DEFAULT '{}',
+    display_order         INT                    NOT NULL DEFAULT 0,
+    status                character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at            TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at            TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by            BIGINT,
+    updated_by            BIGINT,
+    version               INT                    NOT NULL DEFAULT 1
+);
+
+CREATE TABLE business_types
+(
+    id                            SERIAL PRIMARY KEY,
+    internal_id                   character varying(200) NOT NULL UNIQUE,
+    type_key                      character varying(50)  NOT NULL UNIQUE,
+    label                         character varying(100) NOT NULL,
+    icon_key                      character varying(50),
+    description                   TEXT,
+    default_service_category_keys JSONB                  NOT NULL DEFAULT '[]',
+    display_order                 INT                    NOT NULL DEFAULT 0,
+    status                        character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at                    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at                    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by                    BIGINT,
+    updated_by                    BIGINT,
+    version                       INT                    NOT NULL DEFAULT 1
+);
+
+CREATE TABLE business_type_translations
+(
+    id               SERIAL PRIMARY KEY,
+    internal_id      character varying(200) NOT NULL UNIQUE,
+    business_type_id INT                    NOT NULL REFERENCES business_types (id),
+    language_id      INT                    NOT NULL REFERENCES languages (id),
+    label            character varying(100) NOT NULL,
+    description      TEXT,
+    status           character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at       TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at       TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by       BIGINT,
+    updated_by       BIGINT,
+    version          INT                    NOT NULL DEFAULT 1,
+    UNIQUE (business_type_id, language_id)
+);
