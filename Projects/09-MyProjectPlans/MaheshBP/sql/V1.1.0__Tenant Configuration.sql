@@ -9,6 +9,7 @@ CREATE TABLE tenants
     internal_id         character varying(200) NOT NULL UNIQUE,
     tenant_code         character varying(50)  NOT NULL UNIQUE,
     name                character varying(200) NOT NULL,
+    legal_name          character varying(200) NOT NULL,
     country_id          INT                    NOT NULL REFERENCES countries (id),
     default_locale_id   INT REFERENCES locales (id),
     default_currency_id INT                    NOT NULL REFERENCES currencies (id),
@@ -182,8 +183,8 @@ CREATE TABLE branch_operating_hours
     is_closed   BOOLEAN     NOT NULL DEFAULT FALSE,
     created_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at  TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    created_by          BIGINT,
-    updated_by          BIGINT,
+    created_by  BIGINT,
+    updated_by  BIGINT,
     version     INT         NOT NULL DEFAULT 1,
     UNIQUE (branch_id, day_of_week)
 );
@@ -333,8 +334,8 @@ CREATE TABLE branch_service_tier_mappings
     status          VARCHAR(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
     created_at      TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
     updated_at      TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
-    created_by          BIGINT,
-    updated_by          BIGINT,
+    created_by      BIGINT,
+    updated_by      BIGINT,
     version         INT          NOT NULL DEFAULT 1,
     UNIQUE (branch_id, service_tier_id)
 );
@@ -351,8 +352,8 @@ CREATE TABLE branch_customer_tier_mappings
     status           VARCHAR(1)    NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
     created_at       TIMESTAMPTZ   NOT NULL DEFAULT NOW(),
     updated_at       TIMESTAMPTZ   NOT NULL DEFAULT NOW(),
-    created_by          BIGINT,
-    updated_by          BIGINT,
+    created_by       BIGINT,
+    updated_by       BIGINT,
     version          INT           NOT NULL DEFAULT 1,
     UNIQUE (branch_id, customer_tier_id)
 );
