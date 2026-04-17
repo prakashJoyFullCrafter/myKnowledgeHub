@@ -1,8 +1,6 @@
 set
 search_path to core;
 
-
-
 CREATE TABLE tenants
 (
     id                  BIGSERIAL PRIMARY KEY,
