@@ -1,13 +1,28 @@
 set
 search_path to core;
 
-CREATE TABLE service_master
+CREATE TABLE item_master
 (
     id                    BIGSERIAL PRIMARY KEY,
     internal_id           character varying(200) NOT NULL UNIQUE,
+    tenant_id             BIGINT                 NOT NULL REFERENCES tenants (id),
+    item_code             character varying(25)  NOT NULL UNIQUE,
+    name                  character varying(200) NOT NULL,
+    item_type_id          INT                    NOT NULL REFERENCES m_item_type (id),
+    status                character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at            TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at            TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by            BIGINT,
+    updated_by            BIGINT,
+    version               INT                    NOT NULL DEFAULT 1
+);
+
+CREATE TABLE service_master
+(
+    id                    BIGINT REFERENCES item_master(id)  PRIMARY KEY,
+    internal_id           character varying(200) NOT NULL UNIQUE,
     item_code             character varying(25)  NOT NULL UNIQUE,
     tenant_id             BIGINT                 NOT NULL REFERENCES tenants (id),
-    item_type_id          INT                    NOT NULL REFERENCES m_item_type (id),
     service_category_id   INT                    NOT NULL REFERENCES m_service_category (id),
     name                  character varying(200) NOT NULL,
     is_inventory_required BOOLEAN                NOT NULL DEFAULT FALSE,
