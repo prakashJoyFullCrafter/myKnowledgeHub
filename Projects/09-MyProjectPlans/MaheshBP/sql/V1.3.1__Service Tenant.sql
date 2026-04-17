@@ -1,6 +1,12 @@
 set
 search_path to core;
 
+-- ============================================================
+-- TENANT-LEVEL SERVICE DEFINITIONS
+-- (Depends on: service_categories, pricing_types, addon_types,
+--  service_tags, media_types, languages — all from V1.3.0 / V1.0.0)
+-- ============================================================
+
 CREATE TABLE services
 (
     id                    BIGSERIAL PRIMARY KEY,
@@ -21,27 +27,11 @@ CREATE TABLE services
     version               INT                    NOT NULL DEFAULT 1
 );
 
-CREATE TABLE service_tiers
-(
-    id            SERIAL PRIMARY KEY,
-    internal_id   VARCHAR(200) NOT NULL UNIQUE,
-    tier_key      VARCHAR(30)  NOT NULL UNIQUE, -- NORMAL, VIP, PREMIUM
-    name          VARCHAR(100) NOT NULL,
-    description   TEXT,
-    display_order INT          NOT NULL DEFAULT 0,
-    status        VARCHAR(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
-    created_at    TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
-    updated_at    TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
-    created_by    BIGINT REFERENCES users (id),
-    updated_by    BIGINT REFERENCES users (id),
-    version       INT          NOT NULL DEFAULT 1
-);
-
 CREATE TABLE service_translations
 (
     id          BIGSERIAL PRIMARY KEY,
-    tenant_id   BIGINT                 NOT NULL REFERENCES tenants (id),
     internal_id character varying(200) NOT NULL UNIQUE,
+    tenant_id   BIGINT                 NOT NULL REFERENCES tenants (id),
     service_id  BIGINT                 NOT NULL REFERENCES services (id),
     language_id INT                    NOT NULL REFERENCES languages (id),
     name        character varying(200) NOT NULL,
@@ -118,8 +108,64 @@ CREATE TABLE service_bundle_items
     status      character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
     created_at  TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
     updated_at  TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
-    created_by  BIGINT REFERENCES users (id),
-    updated_by  BIGINT REFERENCES users (id),
+    created_by  BIGINT,
+    updated_by  BIGINT,
     version     INT                    NOT NULL DEFAULT 1,
     UNIQUE (bundle_id, service_id)
+);
+
+-- ============================================================
+-- SERVICE METADATA (depends on services table above)
+-- ============================================================
+
+CREATE TABLE service_tag_assignments
+(
+    id             BIGSERIAL PRIMARY KEY,
+    internal_id    character varying(200) NOT NULL UNIQUE,
+    tenant_id      BIGINT                 NOT NULL REFERENCES tenants (id),
+    service_id     BIGINT                 NOT NULL REFERENCES services (id),
+    service_tag_id INT                    NOT NULL REFERENCES service_tags (id),
+    status         character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at     TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at     TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by     BIGINT,
+    updated_by     BIGINT,
+    version        INT                    NOT NULL DEFAULT 1,
+    UNIQUE (service_id, service_tag_id)
+);
+
+CREATE TABLE service_faqs
+(
+    id            BIGSERIAL PRIMARY KEY,
+    internal_id   character varying(200) NOT NULL UNIQUE,
+    tenant_id     BIGINT                 NOT NULL REFERENCES tenants (id),
+    service_id    BIGINT                 NOT NULL REFERENCES services (id),
+    language_id   INT                    NOT NULL REFERENCES languages (id),
+    question      TEXT                   NOT NULL,
+    answer        TEXT                   NOT NULL,
+    display_order INT                    NOT NULL DEFAULT 0,
+    status        character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by    BIGINT,
+    updated_by    BIGINT,
+    version       INT                    NOT NULL DEFAULT 1
+);
+
+CREATE TABLE service_media
+(
+    id            BIGSERIAL PRIMARY KEY,
+    internal_id   character varying(200) NOT NULL UNIQUE,
+    tenant_id     BIGINT                 NOT NULL REFERENCES tenants (id),
+    service_id    BIGINT                 NOT NULL REFERENCES services (id),
+    media_type_id INT                    NOT NULL REFERENCES media_types (id),
+    url           TEXT                   NOT NULL,
+    alt_text      character varying(255),
+    display_order INT                    NOT NULL DEFAULT 0,
+    status        character varying(1)   NOT NULL DEFAULT 'A' CHECK (status IN ('A', 'I')),
+    created_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    updated_at    TIMESTAMPTZ            NOT NULL DEFAULT NOW(),
+    created_by    BIGINT,
+    updated_by    BIGINT,
+    version       INT                    NOT NULL DEFAULT 1
 );

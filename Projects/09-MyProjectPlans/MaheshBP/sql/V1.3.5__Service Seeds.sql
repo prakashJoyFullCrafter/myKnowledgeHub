@@ -1,5 +1,10 @@
 set
 search_path to core;
+
+-- ============================================================
+-- SERVICE TYPES (15)
+-- ============================================================
+
 INSERT INTO service_types (internal_id, name, display_order, status, created_at, updated_at, version)
 VALUES ('SVC-TYPE-001', 'Hair', 1, 'A', NOW(), NOW(), 1),
        ('SVC-TYPE-002', 'Skin', 2, 'A', NOW(), NOW(), 1),
@@ -17,6 +22,10 @@ VALUES ('SVC-TYPE-001', 'Hair', 1, 'A', NOW(), NOW(), 1),
        ('SVC-TYPE-014', 'Piercing', 14, 'A', NOW(), NOW(), 1),
        ('SVC-TYPE-015', 'Men Grooming', 15, 'A', NOW(), NOW(), 1);
 
+
+-- ============================================================
+-- SERVICE CATEGORIES (78)
+-- ============================================================
 
 INSERT INTO service_categories (internal_id, service_type_id, name, description, display_order, status, created_at,
                                 updated_at, version)
@@ -130,6 +139,11 @@ VALUES
 ('SVC-CAT-077', 15, 'Hot Towel Shave', 'Traditional hot towel wet shave', 5, 'A', NOW(), NOW(), 1),
 ('SVC-CAT-078', 15, 'Grooming Package', 'Combined men grooming service package', 6, 'A', NOW(), NOW(), 1);
 
+
+-- ============================================================
+-- PRICING TYPES (6)
+-- ============================================================
+
 INSERT INTO pricing_types (internal_id, type_key, label, status, created_at, updated_at, version)
 VALUES ('PRC-TYP-001', 'FIXED', 'Fixed Price', 'A', NOW(), NOW(), 1),
        ('PRC-TYP-002', 'FROM_PRICE', 'Starting From', 'A', NOW(), NOW(), 1),
@@ -138,15 +152,30 @@ VALUES ('PRC-TYP-001', 'FIXED', 'Fixed Price', 'A', NOW(), NOW(), 1),
        ('PRC-TYP-005', 'PACKAGE', 'Package Price', 'A', NOW(), NOW(), 1),
        ('PRC-TYP-006', 'FREE', 'Free', 'A', NOW(), NOW(), 1);
 
+
+-- ============================================================
+-- DURATION UNITS (3)
+-- ============================================================
+
 INSERT INTO duration_units (internal_id, name, to_minutes, status, created_at, updated_at, version)
 VALUES ('DUR-UNIT-001', 'Minutes', 1, 'A', NOW(), NOW(), 1),
        ('DUR-UNIT-002', 'Hours', 60, 'A', NOW(), NOW(), 1),
        ('DUR-UNIT-003', 'Days', 1440, 'A', NOW(), NOW(), 1);
 
+
+-- ============================================================
+-- ADDON TYPES (3)
+-- ============================================================
+
 INSERT INTO addon_types (internal_id, type_key, name, status, version)
 VALUES ('ADDONTYP-001', 'PRODUCT', 'Product', 'A', 1),
        ('ADDONTYP-002', 'SERVICE_EXTENSION', 'Service Extension', 'A', 1),
        ('ADDONTYP-003', 'UPGRADE', 'Upgrade', 'A', 1);
+
+
+-- ============================================================
+-- STAFF TIERS (5)
+-- ============================================================
 
 INSERT INTO staff_tiers (internal_id, name, display_order, status, created_at, updated_at, version)
 VALUES ('STF-TIER-001', 'Trainee', 1, 'A', NOW(), NOW(), 1),
@@ -155,25 +184,57 @@ VALUES ('STF-TIER-001', 'Trainee', 1, 'A', NOW(), NOW(), 1),
        ('STF-TIER-004', 'Master', 4, 'A', NOW(), NOW(), 1),
        ('STF-TIER-005', 'Director', 5, 'A', NOW(), NOW(), 1);
 
+
+-- ============================================================
+-- SERVICE TIERS — customer-facing loyalty tiers (5)
+-- (Table defined in V1.0.0__Core Master.sql)
+-- ============================================================
+
 INSERT INTO service_tiers
 (internal_id, tier_key, name, description, min_spend, min_bookings, discount_percent, priority_booking, display_order,
  status, created_at, updated_at, version)
-VALUES ('CUST-TIER-001', 'NORMAL', 'Normal', 'Default tier for all new customers', 0, 0, 0.00, FALSE, 1, 'A', NOW(),
+VALUES ('SVC-TIER-001', 'NORMAL', 'Normal', 'Default tier for all new customers', 0, 0, 0.00, FALSE, 1, 'A', NOW(),
         NOW(), 1),
-       ('CUST-TIER-002', 'SILVER', 'Silver', 'Customers with moderate booking history', 500, 5, 5.00, FALSE, 2, 'A',
+       ('SVC-TIER-002', 'SILVER', 'Silver', 'Customers with moderate booking history', 500, 5, 5.00, FALSE, 2, 'A',
         NOW(), NOW(), 1),
-       ('CUST-TIER-003', 'GOLD', 'Gold', 'Loyal customers with high booking history', 1500, 15, 10.00, FALSE, 3, 'A',
+       ('SVC-TIER-003', 'GOLD', 'Gold', 'Loyal customers with high booking history', 1500, 15, 10.00, FALSE, 3, 'A',
         NOW(), NOW(), 1),
-       ('CUST-TIER-004', 'VIP', 'VIP', 'High value customers with premium spend', 3000, 30, 15.00, TRUE, 4, 'A', NOW(),
+       ('SVC-TIER-004', 'VIP', 'VIP', 'High value customers with premium spend', 3000, 30, 15.00, TRUE, 4, 'A', NOW(),
         NOW(), 1),
-       ('CUST-TIER-005', 'PREMIUM', 'Premium', 'Top tier customers with exclusive benefits', 5000, 50, 20.00, TRUE, 5,
+       ('SVC-TIER-005', 'PREMIUM', 'Premium', 'Top tier customers with exclusive benefits', 5000, 50, 20.00, TRUE, 5,
         'A', NOW(), NOW(), 1);
 
+
+-- ============================================================
+-- PRICING SCOPE (3)
+-- ============================================================
 
 INSERT INTO pricing_scope (internal_id, name, status, created_at, updated_at, version)
 VALUES ('PRC-SCP-001', 'TENANT', 'A', NOW(), NOW(), 1),
        ('PRC-SCP-002', 'BUSINESS', 'A', NOW(), NOW(), 1),
        ('PRC-SCP-003', 'BRANCH', 'A', NOW(), NOW(), 1);
+
+
+-- ============================================================
+-- SERVICE TIER ↔ CUSTOMER TIER MAPPING
+-- Maps service_tiers (from V1.0.0) to customer_tiers (from V1.0.0)
+--
+-- service_tiers: 1=NORMAL, 2=SILVER, 3=GOLD, 4=VIP, 5=PREMIUM
+-- customer_tiers: 1=Bronze, 2=Silver, 3=Gold, 4=Platinum
+-- ============================================================
+
+INSERT INTO service_tier_customer_tier_map (internal_id, service_tier_id, customer_tier_id, status, version)
+VALUES ('STCTM-001', 1, 1, 'A', 1),   -- NORMAL  → Bronze
+       ('STCTM-002', 2, 2, 'A', 1),   -- SILVER  → Silver
+       ('STCTM-003', 3, 3, 'A', 1),   -- GOLD    → Gold
+       ('STCTM-004', 4, 4, 'A', 1),   -- VIP     → Platinum
+       ('STCTM-005', 5, 4, 'A', 1);   -- PREMIUM → Platinum
+
+
+-- ============================================================
+-- SERVICE TAGS (58)
+-- ============================================================
+
 INSERT INTO service_tags (internal_id, tag_key, name, status, version)
 VALUES
 
@@ -256,4 +317,3 @@ VALUES
     ('SVC-TAG-056', 'ECO_FRIENDLY', 'Eco Friendly', 'A', 1),
     ('SVC-TAG-057', 'CRUELTY_FREE', 'Cruelty Free', 'A', 1),
     ('SVC-TAG-058', 'VEGAN', 'Vegan', 'A', 1);
-
