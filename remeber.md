@@ -11,3 +11,4 @@ https://x.com/java
 Successfully copied 510kB to postgres:/home/sql/
 
 https://anthropic.skilljar.com/
+https://www.youtube.com/watch?v=L68zxvl2LPY
