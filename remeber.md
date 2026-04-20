@@ -9,3 +9,5 @@ https://www.oracle.com/java/
 docker cp . postgres:/home/sql/
 https://x.com/java
 Successfully copied 510kB to postgres:/home/sql/
+
+https://anthropic.skilljar.com/
