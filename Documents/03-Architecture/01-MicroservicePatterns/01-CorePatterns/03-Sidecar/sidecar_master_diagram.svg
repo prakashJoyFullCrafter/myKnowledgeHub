@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="700" viewBox="0 0 1000 700">
+<style>
+.box { fill:none; stroke:black; stroke-width:2; }
+.text { font-size:12px; font-family:Arial; }
+.arrow { stroke:black; stroke-width:1.5; marker-end:url(#arrowhead); }
+.dashed { stroke-dasharray:5,5; }
+</style>
+
+<defs>
+<marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+<polygon points="0 0, 10 3.5, 0 7" fill="black"/>
+</marker>
+</defs>
+
+<!-- Pod boundary -->
+<rect x="50" y="50" width="400" height="500" class="box"/>
+<text x="60" y="70" class="text">Kubernetes Pod</text>
+
+<!-- App -->
+<rect x="100" y="120" width="120" height="80" class="box"/>
+<text x="110" y="150" class="text">App Container</text>
+
+<!-- Sidecar -->
+<rect x="260" y="120" width="150" height="80" class="box"/>
+<text x="270" y="150" class="text">Sidecar (Proxy)</text>
+
+<!-- Adapter -->
+<rect x="260" y="240" width="150" height="80" class="box"/>
+<text x="270" y="270" class="text">Adapter</text>
+
+<!-- Ambassador -->
+<rect x="260" y="360" width="150" height="80" class="box"/>
+<text x="270" y="390" class="text">Ambassador</text>
+
+<!-- Init -->
+<rect x="100" y="240" width="120" height="80" class="box"/>
+<text x="110" y="270" class="text">Init Container</text>
+
+<!-- External services -->
+<rect x="550" y="120" width="200" height="80" class="box"/>
+<text x="560" y="150" class="text">External Service</text>
+
+<rect x="550" y="260" width="200" height="80" class="box"/>
+<text x="560" y="290" class="text">Logging / Metrics</text>
+
+<!-- Control plane -->
+<rect x="550" y="400" width="200" height="80" class="box"/>
+<text x="560" y="430" class="text">Control Plane</text>
+
+<!-- Arrows -->
+<line x1="220" y1="160" x2="260" y2="160" class="arrow"/>
+<text x="210" y="150" class="text">HTTP</text>
+
+<line x1="410" y1="160" x2="550" y2="160" class="arrow"/>
+<text x="430" y="150" class="text">mTLS traffic</text>
+
+<line x1="410" y1="280" x2="550" y2="280" class="arrow"/>
+<text x="420" y="270" class="text">logs/metrics</text>
+
+<line x1="410" y1="400" x2="550" y2="430" class="arrow dashed"/>
+<text x="420" y="420" class="text">config/policy</text>
+
+<!-- Failure path -->
+<line x1="260" y1="160" x2="220" y2="160" class="arrow dashed"/>
+<text x="180" y="180" class="text">retry/fallback</text>
+
+<!-- Legend -->
+<rect x="50" y="580" width="700" height="100" class="box"/>
+<text x="60" y="600" class="text">Legend:</text>
+<text x="60" y="620" class="text">Solid Arrow = Data Flow</text>
+<text x="60" y="640" class="text">Dashed Arrow = Failure/Recovery</text>
+<text x="300" y="620" class="text">Box = Component</text>
+</svg>

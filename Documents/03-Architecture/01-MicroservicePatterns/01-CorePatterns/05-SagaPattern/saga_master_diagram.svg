@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600">
+<style>
+text { font-family: Arial; font-size: 12px; }
+.box { fill: none; stroke: black; stroke-width: 1.5; }
+.dashed { stroke-dasharray: 5,5; }
+.arrow { marker-end: url(#arrow); }
+</style>
+<defs>
+<marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="3" orient="auto">
+<path d="M0,0 L0,6 L9,3 z" fill="black"/>
+</marker>
+</defs>
+
+<!-- Boxes -->
+<rect x="50" y="200" width="150" height="80" class="box"/>
+<text x="70" y="240">Client / API</text>
+
+<rect x="250" y="200" width="150" height="80" class="box"/>
+<text x="270" y="240">Saga Orchestrator</text>
+
+<rect x="450" y="80" width="150" height="80" class="box"/>
+<text x="470" y="120">Service A</text>
+
+<rect x="450" y="200" width="150" height="80" class="box"/>
+<text x="470" y="240">Service B</text>
+
+<rect x="450" y="320" width="150" height="80" class="box"/>
+<text x="470" y="360">Service C</text>
+
+<rect x="700" y="200" width="150" height="80" class="box"/>
+<text x="720" y="240">Event Bus</text>
+
+<!-- Arrows -->
+<line x1="200" y1="240" x2="250" y2="240" class="arrow"/>
+<text x="210" y="230">Request</text>
+
+<line x1="400" y1="240" x2="450" y2="120" class="arrow"/>
+<text x="410" y="160">Command T1</text>
+
+<line x1="400" y1="240" x2="450" y2="240" class="arrow"/>
+<text x="410" y="230">Command T2</text>
+
+<line x1="400" y1="240" x2="450" y2="360" class="arrow"/>
+<text x="410" y="300">Command T3</text>
+
+<line x1="600" y1="120" x2="700" y2="240" class="arrow"/>
+<text x="610" y="170">Event</text>
+
+<line x1="600" y1="240" x2="700" y2="240" class="arrow"/>
+<text x="610" y="230">Event</text>
+
+<line x1="600" y1="360" x2="700" y2="240" class="arrow"/>
+<text x="610" y="320">Event</text>
+
+<!-- Failure path -->
+<line x1="450" y1="360" x2="250" y2="280" class="arrow dashed"/>
+<text x="300" y="320">Failure</text>
+
+<line x1="250" y1="280" x2="450" y2="240" class="arrow dashed"/>
+<text x="300" y="260">Compensation</text>
+
+<!-- Legend -->
+<rect x="50" y="500" width="800" height="80" class="box"/>
+<text x="60" y="520">Legend:</text>
+<text x="60" y="540">Solid arrows: normal flow (commands/events)</text>
+<text x="60" y="560">Dashed arrows: failure / compensation</text>
+
+</svg>
