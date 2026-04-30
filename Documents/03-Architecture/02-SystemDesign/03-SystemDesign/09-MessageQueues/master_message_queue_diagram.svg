@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+
+<style>
+.box { fill: white; stroke: black; stroke-width: 2; }
+.text { font-family: Arial; font-size: 14px; }
+.arrow { stroke: black; stroke-width: 2; marker-end: url(#arrowhead); }
+.dashed { stroke-dasharray: 5,5; }
+</style>
+
+<defs>
+  <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+    refX="10" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" />
+  </marker>
+</defs>
+
+<!-- Producers -->
+<rect x="50" y="100" width="150" height="60" class="box"/>
+<text x="70" y="135" class="text">Producers</text>
+
+<!-- Broker -->
+<rect x="300" y="80" width="250" height="200" class="box"/>
+<text x="340" y="110" class="text">Message Broker</text>
+<text x="330" y="140" class="text">(Queue / Topic)</text>
+<text x="330" y="170" class="text">Partitions (P1,P2,P3)</text>
+
+<!-- Consumers -->
+<rect x="700" y="100" width="150" height="60" class="box"/>
+<text x="720" y="135" class="text">Consumers</text>
+
+<!-- DLQ -->
+<rect x="700" y="250" width="150" height="60" class="box"/>
+<text x="730" y="285" class="text">DLQ</text>
+
+<!-- Outbox -->
+<rect x="50" y="250" width="150" height="60" class="box"/>
+<text x="60" y="285" class="text">Outbox DB</text>
+
+<!-- Arrows -->
+<line x1="200" y1="130" x2="300" y2="130" class="arrow"/>
+<text x="220" y="120" class="text">Events</text>
+
+<line x1="550" y1="130" x2="700" y2="130" class="arrow"/>
+<text x="580" y="120" class="text">Messages</text>
+
+<line x1="550" y1="200" x2="700" y2="260" class="arrow dashed"/>
+<text x="580" y="210" class="text">Failures → DLQ</text>
+
+<line x1="200" y1="280" x2="300" y2="200" class="arrow"/>
+<text x="210" y="260" class="text">Outbox Publish</text>
+
+<!-- Legend -->
+<rect x="900" y="100" width="250" height="200" class="box"/>
+<text x="910" y="130" class="text">Legend:</text>
+<text x="910" y="160" class="text">Solid Arrow = Normal Flow</text>
+<text x="910" y="190" class="text">Dashed Arrow = Failure Path</text>
+<text x="910" y="220" class="text">Partitions = Scale Boundary</text>
+
+</svg>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+<style>
+text { font-family: Arial; font-size: 14px; }
+.box { fill: none; stroke: black; stroke-width: 2; }
+.arrow { stroke: black; stroke-width: 2; marker-end: url(#arrowhead); }
+.dashed { stroke-dasharray: 5,5; }
+</style>
+
+<defs>
+<marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+<polygon points="0 0, 10 3.5, 0 7" fill="black"/>
+</marker>
+</defs>
+
+<!-- Components -->
+<rect x="50" y="100" width="200" height="80" class="box"/>
+<text x="70" y="140">Clients / Services</text>
+
+<rect x="350" y="50" width="200" height="80" class="box"/>
+<text x="370" y="90">UUID v7 Generator</text>
+
+<rect x="350" y="200" width="200" height="80" class="box"/>
+<text x="370" y="240">Snowflake Nodes</text>
+
+<rect x="650" y="50" width="200" height="80" class="box"/>
+<text x="670" y="90">Database</text>
+
+<rect x="650" y="200" width="200" height="80" class="box"/>
+<text x="670" y="240">Redis / Ticket Server</text>
+
+<!-- Arrows -->
+<line x1="250" y1="140" x2="350" y2="90" class="arrow"/>
+<text x="260" y="100">Generate ID</text>
+
+<line x1="250" y1="140" x2="350" y2="240" class="arrow"/>
+<text x="260" y="200">Generate ID</text>
+
+<line x1="550" y1="90" x2="650" y2="90" class="arrow"/>
+<text x="560" y="80">Insert</text>
+
+<line x1="550" y1="240" x2="650" y2="240" class="arrow"/>
+<text x="560" y="230">Insert</text>
+
+<!-- Failure paths -->
+<line x1="750" y1="130" x2="750" y2="200" class="arrow dashed"/>
+<text x="760" y="170">Fallback</text>
+
+</svg>
