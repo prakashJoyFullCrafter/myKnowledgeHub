@@ -1,0 +1,61 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+<style>
+    text { font-family: Arial, sans-serif; font-size: 14px; }
+    .box { fill: none; stroke: black; stroke-width: 2; }
+    .arrow { stroke: black; stroke-width: 1.5; marker-end: url(#arrowhead); }
+    .dashed { stroke-dasharray: 5,5; }
+</style>
+
+<defs>
+  <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+  refX="10" refY="3.5" orient="auto">
+    <polygon points="0 0, 10 3.5, 0 7" />
+  </marker>
+</defs>
+
+<!-- Boxes -->
+<rect x="50" y="300" width="120" height="60" class="box"/>
+<text x="60" y="335">Client</text>
+
+<rect x="200" y="300" width="160" height="60" class="box"/>
+<text x="210" y="335">API Gateway</text>
+
+<rect x="400" y="250" width="180" height="160" class="box"/>
+<text x="420" y="270">Service</text>
+
+<rect x="620" y="280" width="140" height="60" class="box"/>
+<text x="630" y="315">Circuit Breaker</text>
+
+<rect x="780" y="280" width="120" height="60" class="box"/>
+<text x="790" y="315">Bulkhead</text>
+
+<rect x="920" y="280" width="120" height="60" class="box"/>
+<text x="930" y="315">Retry</text>
+
+<rect x="1080" y="280" width="120" height="60" class="box"/>
+<text x="1090" y="315">Downstream</text>
+
+<!-- Arrows -->
+<line x1="170" y1="330" x2="200" y2="330" class="arrow"/>
+<line x1="360" y1="330" x2="400" y2="330" class="arrow"/>
+<line x1="580" y1="330" x2="620" y2="310" class="arrow"/>
+<line x1="760" y1="310" x2="780" y2="310" class="arrow"/>
+<line x1="900" y1="310" x2="920" y2="310" class="arrow"/>
+<line x1="1040" y1="310" x2="1080" y2="310" class="arrow"/>
+
+<!-- Failure path -->
+<line x1="1080" y1="350" x2="620" y2="380" class="arrow dashed"/>
+<text x="800" y="390">Failure signal</text>
+
+<!-- Fallback -->
+<rect x="620" y="420" width="140" height="60" class="box"/>
+<text x="630" y="455">Fallback</text>
+
+<line x1="690" y1="340" x2="690" y2="420" class="arrow dashed"/>
+
+<!-- Legend -->
+<text x="50" y="50">Legend:</text>
+<text x="50" y="70">Solid line = normal flow</text>
+<text x="50" y="90">Dashed line = failure/recovery</text>
+
+</svg>
