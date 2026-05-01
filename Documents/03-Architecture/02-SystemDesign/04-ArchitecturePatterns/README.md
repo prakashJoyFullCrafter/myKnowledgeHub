@@ -2,6 +2,12 @@
 
 > **Application architecture patterns** (Mark Richards / Neal Ford taxonomy) — sit between **GoF design patterns** (object level) and **microservice patterns** (distributed system level). They describe how to organise a single application or system at the highest structural level.
 
+## Deep-Dive Sub-Modules
+- **01. Clean Architecture** (Robert C. Martin) - concentric layers, dependency rule
+- **02. Hexagonal Architecture** (Cockburn) - ports & adapters, app core isolation
+
+These sit alongside the taxonomy modules below and are studied in their own folders.
+
 ## Module 1: Pattern Selection — How to Choose
 - [ ] No "best" architecture — every pattern is a set of trade-offs across **architectural characteristics** (NFRs)
 - [ ] Key trade-off axes: deployability, elasticity, fault tolerance, performance, scalability, simplicity, testability, evolvability, cost

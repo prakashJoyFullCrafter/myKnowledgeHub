@@ -25,17 +25,21 @@ myKnowledgeHub/
 ```
 
 ### Documents (Theory & Curricula)
-Organized into 7 major sections with **266 README files** containing detailed curricula with checkboxes.
+Organized into 11 major sections with **443 README files** containing detailed curricula with checkboxes.
 
 | # | Section | Scope | README Files |
 |---|---------|-------|-------------|
-| 01 | **Core Backend** | Java (11 topics), Kotlin (9 topics), Spring Boot (16 topics), Quarkus (4), Micronaut (4), Comparison (3), SQL, PostgreSQL (5), Redis (5) | 70 |
-| 02 | **Messaging & Event Streaming** | Apache Kafka (10 topics), RabbitMQ (10 topics) | 29 |
-| 03 | **Architecture** | Microservice Patterns (9), System Design (8), Enterprise Architecture (8: TOGAF, Solution Arch, Problem Solving) | 50 |
-| 04 | **Frontend & Fullstack** | ES6+ (6), TypeScript (4), React.js (4), Next.js (5) | 24 |
-| 05 | **Computer Science & Security** | Data Structures (5), Algorithms (5), Complexity (3), Ethical Hacking (12) | 34 |
-| 06 | **DevOps & Delivery** | CI/CD (4), Containers (4), Cloud (4), Observability (4), Testing (4), Quality Practices (5), AI-Assisted Coding (2) | 37 |
+| 01 | **Core Backend** | Java (12), Kotlin (9), Spring Boot (17), Quarkus (7), Micronaut (7), Comparison (3), SQL, JDBC, PostgreSQL (5), Redis (15) | 89 |
+| 02 | **Messaging & Event Streaming** | Apache Kafka (10), RabbitMQ (11) | 45 |
+| 03 | **Architecture** | Microservice Patterns: Core (11) / Resilience (7) / Data (5); System Design: Principles (5) / Patterns + Enterprise PEAA / SystemDesign (26) / Architecture Patterns + Clean + Hexagonal; Enterprise: TOGAF (29) / Solution Architecture (5) / Problem Solving (4) / Zachman; Domain-Driven Design: Strategic / Tactical / Integration / Event Storming | 119 |
+| 04 | **Frontend & Fullstack** | ES6+ (6), TypeScript (4), React.js (4), Next.js (5), Performance & Web Vitals (4), Testing (4), Build Tooling (4), Auth (4), Frontend Architecture (4) | 49 |
+| 05 | **Computer Science & Security** | Data Structures (8), Algorithms (15), Complexity (3), Ethical Hacking: Foundations (5) / Offensive (10) / Tooling (5) | 55 |
+| 06 | **DevOps & Delivery** | DevOps: CI/CD (7), Containers (6), Cloud (7), Observability (6), SRE & Reliability, Cloud-Native Security, Platform Engineering (IDP / Service Templates / Shared Libs / CI-CD Templates / Observability Standards), DORA Metrics; Code Quality: Testing (5), Quality Practices (5), AI-Assisted Coding (2), Engineering Governance (Versioning / Dependencies / Coding / Security / Release Standards) | 63 |
 | 07 | **Python & Data Science** | Python Core (5), Data Analysis (4), Machine Learning (4), Deep Learning (4) | 22 |
+| 08 | **Domain** | Healthcare (Domain Mastery, Integration Architect); MVP vs Perfect Design curriculum (6 weeks) | 1 |
+| 09 | **Personality** | Languages (English) | 0 |
+| 10 | **Career** | CV, Profile, Job Search, Interview Preparation | 0 |
+| 11 | **Reference** | External links | 0 |
 
 ### Projects (Hands-On Code)
 Matching project structure for building real code alongside the theory.
@@ -56,14 +60,18 @@ Matching project structure for building real code alongside the theory.
 
 | Metric | Count |
 |--------|-------|
-| Document sections | 7 |
-| Document folders | 267 |
-| Curricula (README files) | 266 |
+| Document sections | 11 (7 curriculum + Domain, Personality, Career, Reference) |
+| Document folders | 462 |
+| Curricula (README files) | 443 |
 | Project folders | 66 |
-| Java topics | 11 (97+ modules) |
+| Java topics | 12 (97+ modules) |
 | Kotlin topics | 9 (55 modules) |
-| Spring Boot topics | 16 (expert level) |
-| Total estimated modules | 500+ |
+| Spring Boot topics | 17 (expert level) |
+| Redis topics | 15 |
+| Algorithms topics | 15 |
+| TOGAF topics | 29 |
+| System Design topics | 26 |
+| Total estimated modules | 700+ |
 
 ---
 
