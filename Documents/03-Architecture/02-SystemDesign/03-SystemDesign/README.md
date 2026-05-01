@@ -34,6 +34,7 @@ Distributed system fundamentals for large-scale applications.
 23. **Platform & Deployment** - Containers/K8s in design, service discovery, config management, deployment strategies, autoscaling, IaC/GitOps, CI/CD (7 modules)
 24. **Domain-Specific Design Patterns** - Feeds/timelines, chat/presence, payments/ledger, booking/reservations, notifications, recommendations, analytics, file storage/sync, multi-tenant SaaS, rate limiting (10 modules)
 25. **Multi-Region & Geo-Distribution** - Active-active vs active-passive, data replication across regions, global traffic management, leader placement, cross-region consistency, cost/latency/consistency trade-offs (7 modules)
+26. **API Design** - Endpoints/methods/status codes, AuthN/AuthZ + tokens + OAuth2/OIDC, idempotency/rate limiting/throttling/error handling, pagination/caching/API gateway, versioning/OpenAPI/REST vs GraphQL, webhooks/async APIs (6 modules)
 
 ## Interview & Practice
 14. **Back-of-the-Envelope Estimation** - QPS, storage, bandwidth, memory, framework (6 modules)

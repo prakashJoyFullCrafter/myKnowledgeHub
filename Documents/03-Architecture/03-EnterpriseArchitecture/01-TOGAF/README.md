@@ -311,9 +311,9 @@ The Open Group periodically requires credential holders to validate for new vers
 
 ## 8. Knowledge Base Structure
 
-This knowledge base is organized into 25 topic directories, each covering a distinct aspect of TOGAF 10 mastery:
+This knowledge base is organized into **29 topic directories**, grouped into four logical categories. Directory numbers are preserved (not strictly sequential within groups) to keep cross-references stable.
 
-### Fundamental Content & Core
+### A. Fundamental Content & Core (the stable TOGAF core)
 | Directory | Topic | Focus |
 |---|---|---|
 | `01-ADMCycle` | Architecture Development Method | Phase-by-phase deep dive, inputs/outputs, iteration patterns |
@@ -324,10 +324,32 @@ This knowledge base is organized into 25 topic directories, each covering a dist
 | `06-ContentFramework` | Architecture Content Framework | Deliverables, artifacts, building blocks taxonomy |
 | `07-ArchitectureRepository` | Architecture Repository | Six classes, governance log, SIB, reference library |
 | `08-ReferenceModels` | TOGAF Reference Models | TRM (Technical Reference Model), III-RM (Integrated Information Infrastructure) |
-| `09-CapabilityBasedPlanning` | Capability-Based Planning | Capability increments, roadmaps, transition architecture |
 | `10-ArchitectureCapabilityFramework` | Architecture Capability | EA roles, board setup, governance practice |
 
-### Adoption, Application & Context
+### B. ADM Techniques (TOGAF-formal techniques used inside the ADM)
+| Directory | Topic | Focus | ADM Phase |
+|---|---|---|---|
+| `26-BusinessScenarios` | Business Scenarios | SMART scenarios; 6 components; requirements gathering | Phase A |
+| `27-StakeholderManagement` | Stakeholder Management | Power/Interest grid; concerns; viewpoints; communications plan | All phases |
+| `28-ArchitecturePrinciples` | Architecture Principles | Format (Name/Statement/Rationale/Implications); 4 categories; quality criteria | Preliminary, A |
+| `29-GapAnalysis` | Gap Analysis | Baseline vs Target; Eliminate/Retain/New; PPT lens; transition architectures | B, C, D |
+| `09-CapabilityBasedPlanning` | Capability-Based Planning | Capability increments, roadmaps, transition architecture | E, F |
+| `20-MigrationPlanning` | Migration Planning | Roadmap, transition architectures, work packages | E, F |
+
+### C. Series Guides (topic-specific, independently updated)
+| Directory | Topic | Focus |
+|---|---|---|
+| `14-SecurityArchitecture` | Security Architecture | Threat modeling, controls integration, SABSA-TOGAF mapping |
+| `15-BusinessArchitectureGuide` | Business Architecture | Capabilities, value streams, organization maps, business motivation |
+| `16-DigitalTransformation` | Digital Transformation | EA in cloud-native, platform, and digital contexts |
+| `19-AgileArchitecture` | Agile Architecture | Continuous architecture, ADM in Agile/SAFe/DevOps, MVPs, fitness functions |
+| `21-EAMaturityModels` | EA Maturity Models | ACMM, OMG EA Maturity, NASCIO; assess and grow EA practice |
+| `22-ArchitectureSkillsFramework` | Skills & Competencies | Role definitions, competency levels, career paths for architects |
+| `23-InformationMapping` | Information Mapping | Data architecture techniques, MDM, information mapping |
+| `24-LeadersGuide` | Leader's Guide | EA for senior architects, CIOs; sponsorship, value articulation |
+| `25-Sustainability` | Sustainability | Green IT, ESG considerations in architecture decisions |
+
+### D. Adoption, Application & Context
 | Directory | Topic | Focus |
 |---|---|---|
 | `11-TOGAF10Changes` | TOGAF 10 Changes | Modular structure, new Series Guides, delta from 9.2 |
@@ -336,19 +358,7 @@ This knowledge base is organized into 25 topic directories, each covering a dist
 | `17-TOGAFHistory` | TOGAF History | Origins, version evolution, influence on FEAF/DoDAF |
 | `18-TOGAFLimitations` | TOGAF Limitations | Critique, common misuses, where TOGAF doesn't fit |
 
-### Series Guides (Topic-Specific, Independently Updated)
-| Directory | Topic | Focus |
-|---|---|---|
-| `14-SecurityArchitecture` | Security Architecture | Threat modeling, controls integration, SABSA-TOGAF mapping |
-| `15-BusinessArchitectureGuide` | Business Architecture | Capabilities, value streams, organization maps, business motivation |
-| `16-DigitalTransformation` | Digital Transformation | EA in cloud-native, platform, and digital contexts |
-| `19-AgileArchitecture` | Agile Architecture | Continuous architecture, ADM in Agile/SAFe/DevOps, MVPs, fitness functions |
-| `20-MigrationPlanning` | Migration Planning | Roadmap, transition architectures, gap analysis, work packages |
-| `21-EAMaturityModels` | EA Maturity Models | ACMM, OMG EA Maturity, NASCIO; assess and grow EA practice |
-| `22-ArchitectureSkillsFramework` | Skills & Competencies | Role definitions, competency levels, career paths for architects |
-| `23-InformationMapping` | Information Mapping | Data architecture techniques, MDM, information mapping |
-| `24-LeadersGuide` | Leader's Guide | EA for senior architects, CIOs; sponsorship, value articulation |
-| `25-Sustainability` | Sustainability | Green IT, ESG considerations in architecture decisions |
+> **Note on directory numbering**: numbers reflect *creation order*, not category. The four logical groups above are the recommended reading order. Modules `09` (Capability-Based Planning) and `20` (Migration Planning) are listed under "ADM Techniques" because they are technique-modules, not Series Guides.
 
 ---
 
