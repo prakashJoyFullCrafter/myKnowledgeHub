@@ -1,416 +1,331 @@
-# TOGAF 10 — Master Overview
+# TOGAF 10 - Curriculum
 
-> The Open Group Architecture Framework, 10th Edition (2022)
-> This knowledge base targets full mastery: from foundational concepts to certification readiness and real-world application.
+## Module 1: TOGAF Fundamentals
+- [ ] What is TOGAF and why it exists (purpose, target users)
+- [ ] TOGAF version timeline: TAFIM (1990) → TOGAF 1 (1995) → TOGAF 9 (2009) → TOGAF 9.2 (2018) → TOGAF 10 (2022)
+- [ ] The Open Group's role and how TOGAF is governed
+- [ ] TOGAF 10 modular structure: Fundamental Content vs Series Guides
+- [ ] What changed from TOGAF 9.2 to TOGAF 10 (modular split, Series Guides, certification rename)
+- [ ] EA definitions: TOGAF, Gartner, IEEE 42010 — what they share
+- [ ] Why EA exists: 6 failure patterns without it (fragmentation, duplication, drift, etc.)
+- [ ] How TOGAF compares to Zachman, FEAF, DoDAF, Gartner EA
+- [ ] The 5 core components: ADM, Content Framework, Continuum, Repository, Capability Framework
+
+## Module 2: The Four Architecture Domains (BDAT)
+- [ ] Business Architecture (Phase B): capabilities, value streams, processes, organisation
+- [ ] Data Architecture (Phase C, first sub-phase): entities, models, flows, governance, MDM
+- [ ] Application Architecture (Phase C, second sub-phase): portfolio, integrations, APIs, interfaces
+- [ ] Technology Architecture (Phase D): infra, platforms, networks, cloud, security
+- [ ] Cascade model (top-down requirements) vs Constraint propagation (bottom-up)
+- [ ] Domain misalignment patterns and root causes
+- [ ] Key artifacts per domain (3+ per domain)
+- [ ] Stakeholder mapping per domain (CEO, CDO, CIO, CTO, CISO)
+
+## Module 3: Architecture Views & Viewpoints (ISO 42010)
+- [ ] Stakeholder → Concern → Viewpoint → View chain
+- [ ] **Critical distinction: Viewpoint = template; View = instance**
+- [ ] How to construct a stakeholder-specific view (5-step process)
+- [ ] Viewpoints by domain (Organization, App Communication, Platform Decomposition, etc.)
+- [ ] Anti-pattern: same diagram for all stakeholders (wall-of-rectangles)
+
+## Module 4: ADM Overview & Iteration
+- [ ] The 10 phases: Preliminary + A–H + central Requirements Management
+- [ ] ADM as a cycle (Phase H triggers new SoAW → re-enters Phase A)
+- [ ] **Requirements Management is at the centre, not in sequence**
+- [ ] The 4 iteration patterns: Architecture Context, Architecture Definition, Transition Planning, Architecture Governance
+- [ ] Architecture levels: Strategic (5+ years), Segment (1–3 years), Capability (sprint/quarter)
+- [ ] Iteration decision matrix (which trigger → which phase to re-enter)
+- [ ] Adapting ADM down (small org / Agile) vs up (large enterprise)
+
+## Module 5: ADM Phases — Preliminary & A (Vision)
+- [ ] **Preliminary Phase is NOT part of the ADM cycle** — it precedes
+- [ ] Preliminary outputs: tailored ADM, Architecture Principles, Repository, Governance Framework
+- [ ] Phase A purpose: define vision, secure formal mandate
+- [ ] Phase A outputs: Architecture Vision, Statement of Architecture Work (SoAW), Stakeholder Map
+- [ ] **Architecture Vision ≠ Architecture Definition Document** (Vision is high-level)
+- [ ] Statement of Architecture Work — the project charter contents
+- [ ] Phase A signature technique: Business Scenario
+
+## Module 6: ADM Phases — B, C, D (Architecture Definition)
+- [ ] Phase B: capability mapping, value streams, process modelling, business gap analysis
+- [ ] Phase C(Data): conceptual/logical/physical models, data flows, governance, MDM
+- [ ] Phase C(App): application portfolio, integration patterns, API strategy, the 6 Rs
+- [ ] **Data sub-phase typically before Application** (need to know data before designing systems)
+- [ ] Phase D: infrastructure, platforms, technology standards, TIME model
+- [ ] Architecture Definition Document (ADD) — built incrementally across B, C, D
+- [ ] Gap analysis as the recurring technique in B, C, D
+
+## Module 7: ADM Phases — E, F (Opportunities & Migration)
+- [ ] Phase E: **identifies and creates** initial Architecture Roadmap
+- [ ] Transition Architecture: intermediate, stable, valuable, achievable state
+- [ ] Each TA must deliver standalone business value (justify itself)
+- [ ] Capability Increments — discrete, measurable, time-boxed improvements
+- [ ] Work Packages — bounded units of implementation work
+- [ ] Phase F: **finalises** roadmap and produces Implementation & Migration Plan
+- [ ] **Architecture Roadmap ≠ Migration Plan** (strategic vs detailed delivery)
+- [ ] Prioritisation tools: Value vs Effort, WSJF, MoSCoW, Weighted Scoring
+
+## Module 8: ADM Phases — G, H (Governance & Change)
+- [ ] Phase G: govern delivery; Architecture Contracts; Compliance Reviews
+- [ ] **6 compliance levels**: Irrelevant → Consistent → Compliant → Conformant → Fully Conformant → Non-Conformant
+- [ ] Dispensation = formal, **time-bounded** exception with expiry and remediation owner
+- [ ] Architecture Contracts — binding agreement between EA and delivery teams
+- [ ] **Phase H is continuous, NOT one-time** (runs in parallel with operations)
+- [ ] Change classification: Simplification → Incremental → Re-architecting
+- [ ] When Phase H produces a new SoAW (major change → new ADM cycle)
+- [ ] Requirements Impact Assessment process (7 steps)
+
+## Module 9: Architecture Content Framework
+- [ ] **Three categories**: Deliverable (signed off), Artifact (component within deliverable), Building Block (reusable)
+- [ ] **Three artifact types**: Catalog (list), Matrix (cross-mapping), Diagram (visual)
+- [ ] **ABB vs SBB**: ABB defines WHAT (tech-agnostic); SBB defines HOW (product-specific)
+- [ ] ABBs live in Architecture Continuum; SBBs live in Solutions Continuum
+- [ ] Architecture Content Metamodel — entity types and relationships
+- [ ] Traceability chain: Goal → Capability → Application → Technology
+
+## Module 10: Enterprise Continuum
+- [ ] **4 levels (generic → specific)**: Foundation → Common Systems → Industry → Organization-Specific
+- [ ] Mnemonic: "Four Companies Invest Organically"
+- [ ] Architecture Continuum (patterns) vs Solutions Continuum (products)
+- [ ] **Specialise** (left → right): add constraints, tailor to context
+- [ ] **Generalise** (right → left): contribute novel patterns back
+- [ ] **Continuum classifies; Repository stores** — they are not the same
+- [ ] TRM at Foundation level; III-RM at Common Systems level
+
+## Module 11: Architecture Repository
+- [ ] **6 classes**: Metamodel, Capability, Landscape, SIB, Reference Library, Governance Log
+- [ ] Mnemonic: "My Careful Librarian Stores Reference Guides"
+- [ ] Architecture Landscape **3 levels**: Strategic, Segment, Capability
+- [ ] Standards Information Base (SIB) — Mandatory / Recommended / Emerging / Deprecated
+- [ ] Reference Library — guidelines, templates, patterns, viewpoints
+- [ ] Governance Log — Decisions, Compliance, Dispensations, Contracts, Waivers, Change Requests
+- [ ] **SIB vs Reference Library**: SIB = standards (what to use); Reference Library = patterns (how to design)
+
+## Module 12: Architecture Capability Framework
+- [ ] Capability Framework answers HOW to run EA (vs ADM = WHAT to do)
+- [ ] Architecture Board: composition, charter, decision authority (NOT advisory only)
+- [ ] Organisation models: Centralised, Federated, **Hybrid (Hub & Spoke) — recommended**
+- [ ] Architecture roles: Chief Architect, EA, Domain Architect, Solution Architect, etc.
+- [ ] Architecture Decision Records (ADRs) — context, decision, rationale, consequences
+- [ ] EA value: vanity metrics (avoid) vs outcome metrics (use)
+- [ ] Funding models: project-based, centralised, **capability-based**, platform funding
+
+## Module 13: ACMM (Architecture Capability Maturity Model)
+- [ ] **6 levels (0–5)**: None → Initial → Under Development → **Defined** → Managed → Optimizing
+- [ ] Mnemonic: "Nobody Invites Under-Developed Managers Over"
+- [ ] **Level 3 (Defined) is minimum viable** governance state
+- [ ] 9 assessment characteristics (Process, Development, Business Linkage, etc.)
+- [ ] Realistic targets: most orgs Level 3; financial services Level 4; Level 5 rare
+- [ ] Multi-year roadmap: 1 level per 18–24 months typically
+- [ ] Spider chart visualisation across characteristics
+- [ ] Anti-patterns: maturity theatre, score inflation, mixing models mid-cycle
+
+## Module 14: Architecture Skills Framework
+- [ ] **8 architect role categories**: ARB Member, Sponsor, Manager, EA, Business, Data, Application, Technology Architect
+- [ ] **7 skill categories**: Generic, Business, EA Skills, PM, IT General, Technical IT, Legal & Regulatory
+- [ ] **4 proficiency levels**: Background → Awareness → Detailed → Expert
+- [ ] Role × Skill × Proficiency matrix per role
+- [ ] Career paths: Vertical (depth), Horizontal (breadth), T-shaped (hybrid)
+- [ ] Modern competencies under-emphasised: cloud-native, DevOps, ML/AI, sustainability, zero-trust
+- [ ] SFIA as alternative skills framework
+
+## Module 15: ADM Techniques
+- [ ] **Architecture Principles**: 4-part format (Name, Statement, Rationale, Implications)
+- [ ] 5 quality criteria: Understandable, Robust, Complete, Consistent, Stable
+- [ ] 4 categories: Business, Data, Application, Technology
+- [ ] **Stakeholder Management**: Power/Interest grid (Manage Closely / Keep Satisfied / Keep Informed / Monitor)
+- [ ] RACI for architecture decisions (Responsible, Accountable, Consulted, Informed)
+- [ ] **Business Scenarios**: SMART test + 6 components (Problem, Environment, Objectives, Human Actors, Computer Actors, Roles)
+- [ ] Used in Phase A primarily; refined through B/C/D
+- [ ] **Gap Analysis**: 3 operations (Eliminate / Retain / New)
+- [ ] Gap Matrix structure (baseline rows × target columns)
+- [ ] **PPT lens** (People / Process / Technology) — not just tech gaps
+- [ ] Capability-Based Planning: Capability Map + Heat Map + Increments
+
+## Module 16: Reference Models (TRM & III-RM)
+- [ ] **TRM = Technical Reference Model = Foundation Architecture** (most generic)
+- [ ] **TRM is a TAXONOMY, not a product catalog** — service categories, not vendors
+- [ ] TRM service categories: Data Management, Data Interchange, UI, System Mgmt, Network, OS, Security, etc.
+- [ ] **III-RM = Common Systems Architecture** (one level more specific than TRM)
+- [ ] III-RM 3 components: Brokerage Services, Managed Infrastructure, Federated Infrastructure
+- [ ] Industry reference models: BIAN (banking), eTOM (telco), HL7 (healthcare), ARTS (retail)
+- [ ] Process: inventory baseline → identify gaps → select products → populate SIB → drive rationalisation
+
+## Module 17: ArchiMate Modeling Language
+- [ ] ArchiMate 3.2 — TOGAF's natural visual notation companion
+- [ ] **3×3 metamodel**: Business / Application / Technology layers × Active Structure / Behavior / Passive Structure
+- [ ] Cross-cutting layers: Motivation, Strategy, Implementation & Migration
+- [ ] Key elements per layer (Actor, Component, Node, Service, Object, Artifact, etc.)
+- [ ] **Key relationships**: Composition, Aggregation, Assignment, Realization, Serving, Access, Triggering, Flow
+- [ ] **Realization direction: concrete → abstract** (App Service realizes Business Service)
+- [ ] Color conventions per layer (Business=yellow, App=blue, Tech=green, Motivation=purple)
+- [ ] Key viewpoints: Layered, Motivation, Migration, Application Cooperation, Technology Usage
+- [ ] ArchiMate ↔ TOGAF ADM phase mapping
+- [ ] Tools: Archi (free), Sparx EA, BiZZdesign HoriZZon
+
+## Module 18: Series Guide — Business Architecture
+- [ ] Business Motivation Model (BMM): Vision → Goal → Objective → Strategy → Tactic → Business Rule
+- [ ] **Capability** = WHAT (stable); **Process** = HOW (volatile); **Function** = WHO
+- [ ] Capability characteristics: stable, outcome-focused, technology-agnostic, hierarchical, assessable
+- [ ] Capability hierarchy: Domain (L1) → Capability (L2) → Sub-Capability (L3)
+- [ ] Capability Maturity Scale (1–5): Initial → Developing → Defined → Managed → Optimizing
+- [ ] Value Stream characteristics: stable, outside-in, stakeholder-perspective
+- [ ] Value Stream stages: Value Item, Triggering Event, Entry/Exit Criteria, Participating Capabilities
+- [ ] **Business Object (Phase B)** vs **Data Entity (Phase C)** — concept vs technical
+- [ ] BIZBOK alignment with TOGAF Business Architecture
+
+## Module 19: Series Guide — Security Architecture
+- [ ] **Security is cross-cutting across ALL 4 BDAT domains**, not just Technology
+- [ ] **STRIDE** threat modeling: Spoofing, Tampering, Repudiation, Info Disclosure, DoS, Elevation
+- [ ] **Zero Trust Architecture (NIST SP 800-207)**: never trust, always verify
+- [ ] Zero Trust components: IdP + MFA, Device Trust, Micro-segmentation, JIT access
+- [ ] **OWASP Top 10** as mandatory app baseline
+- [ ] **Defense in Depth (6 layers)**: Perimeter → Network → Host → Application → Data → Identity
+- [ ] Security activities in each ADM phase (Preliminary through H)
+- [ ] Security ABBs (IAM, Crypto, Audit, Threat Detection, Network Security, Cert Management)
+- [ ] **SABSA** as security-depth complement to TOGAF
+
+## Module 20: Series Guide — Digital Transformation & Cloud
+- [ ] Cloud service models: IaaS, PaaS, SaaS, FaaS, CaaS — and TOGAF domain mapping
+  - [ ] Cloud deployment models: Public, Private, Hybrid, Multi-Cloud
+  - [ ] **Cloud-First as Architecture Principle** (drives Phase D defaults)
+  - [ ] Internal Developer Platform (IDP) pattern as Phase D output
+  - [ ] Cloud Landing Zone components (Management, Security, Logging, Network, Workload accounts)
+  - [ ] API economy architecture: API Gateway → Microservices → Event Bus → Data Platform
+  - [ ] Microservices migration: **Strangler Fig**, Anti-Corruption Layer, DDD bounded contexts
+  - [ ] **The 6 Rs**: Retain, Retire, Rehost, Replatform, Refactor, Repurchase
+  - [ ] Modern data platform: Ingestion → Storage (lake + warehouse) → Processing → Serving
+  - [ ] Data Mesh principles: decentralized ownership, data products, federated governance
+  - [ ] Event-Driven Architecture patterns: Event Notification, Event-Carried State, Event Sourcing, CQRS, Saga
+  - [ ] AI/ML across BDAT: feature store, model registry, MLOps, vector databases
+
+## Module 21: Series Guide — Agile Architecture
+- [ ] TOGAF was always iterative — Series Guide makes it explicit
+- [ ] **3 native iteration patterns**: within-phase, phase-to-phase, cycle (Strategic/Segment/Capability)
+- [ ] Just-enough, just-in-time architecture
+- [ ] ADM-to-Agile/SAFe mapping table (Phase A ↔ PI Planning, Phase G ↔ CI fitness functions)
+- [ ] **Architectural Runway** (SAFe) — foundational tech ahead of business demand
+- [ ] **Intentional vs Emergent architecture** balance
+- [ ] Lightweight artifacts: ADRs, C4 model, arc42 sections, Architecture Kanban
+- [ ] **Fitness Functions** (Neal Ford) — Phase G compliance as automated tests in CI
+- [ ] Practices: embedded architects, async ADR review on PRs, communities of practice
+- [ ] Anti-patterns: BDUF in Agile clothing, governance theatre, standards graveyard
+
+## Module 22: Series Guide — Information Mapping & MDM
+- [ ] **Information vs Data**: Information = business meaning; Data = technical representation
+- [ ] Information Map 3 layers: Conceptual, Logical, Physical
+- [ ] Per element: definition, system of record, owner, steward, lifecycle, sensitivity, quality
+- [ ] **4 MDM architecture styles**: Registry, Consolidation, Coexistence, Centralised
+- [ ] Match-Merge logic: deterministic, probabilistic, ML-based
+- [ ] Survivorship rules (which source wins per attribute)
+- [ ] **Information ownership roles**: Owner, Steward, Custodian, Consumer
+- [ ] Customer 360 architecture (incl. **consent infrastructure** — non-negotiable)
+- [ ] Privacy by design: pseudonymisation, purpose limitation, data minimisation, right to erasure
+- [ ] Modern patterns: Data Mesh, Data Fabric, Data Lakehouse, Semantic Layer
+
+## Module 23: Series Guide — Sustainability
+- [ ] **3 levels of impact**: Embodied, Operational, Indirect/induced carbon
+- [ ] Sustainability NFRs: gCO2e/request, energy proportionality, resource utilisation, demand shifting
+- [ ] **Cloud region selection** dominates carbon outcomes (10–50× variance per kWh)
+- [ ] Trade-offs: Carbon ↔ Latency, Carbon ↔ Cost, Carbon ↔ Residency
+- [ ] **Green Software Foundation 5 principles**
+- [ ] Architectural patterns: right-sizing, scale-to-zero, demand shifting/shaping, cold tiers
+- [ ] Greenwashing red flags: offsets-only, REC-only "renewable", one-time measurement
+- [ ] Tools: Cloud Carbon Footprint, Electricity Maps, Carbon-Aware SDK, Kepler
+- [ ] Reporting frameworks: GHG Protocol, CSRD (EU), SEC Climate Disclosure (US), SBTi
+
+## Module 24: Practical Artifacts & Templates
+- [ ] **The 11 standard TOGAF deliverable templates**:
+  - [ ] Architecture Vision (Phase A)
+  - [ ] Statement of Architecture Work (Phase A)
+  - [ ] Architecture Definition Document (B/C/D, per domain)
+  - [ ] Architecture Requirements Specification (cross-phase)
+  - [ ] Gap Analysis Table
+  - [ ] Stakeholder Map / Matrix
+  - [ ] Architecture Principles Catalog
+  - [ ] Architecture Decision Record (ADR)
+  - [ ] Architecture Roadmap
+  - [ ] Capability Heat Map
+  - [ ] Architecture Contract (Phase G)
+- [ ] Quick reference: which artifact answers which question
+- [ ] ADM phase → primary artifacts mapping
+
+## Module 25: TOGAF Limitations & When NOT to Use It
+- [ ] **6 common criticisms**: heavyweight, process-heavy, vague techniques, learning curve, slow tech adaptation, weak for small change
+- [ ] When NOT to use full TOGAF (startups, single-team products, pure agile, emergencies, PoCs)
+- [ ] **Selective TOGAF** patterns (Phase A only, Architecture Board only, Principles only, ADRs only)
+- [ ] Lightweight alternatives: C4 Model, ADRs, SAFe Architecture Runway, Team Topologies, SABSA, DAMA-DMBOK
+- [ ] The Pragmatic Architecture Manifesto (right-size, conversation > document, principles > processes)
+- [ ] Senior Architect mental models (TOGAF is a MAP not the TERRITORY)
+- [ ] When TOGAF IS valuable (500+ IT staff, regulated, $10M+ transformation, exec mandate needed)
+
+## Module 26: Adjacent Frameworks Integration
+- [ ] **TOGAF + ArchiMate**: Process + Notation
+- [ ] **TOGAF + Zachman**: Process + Classification (complement, not compete)
+- [ ] Zachman 6×6 matrix (perspectives × aspects: What/How/Where/Who/When/Why)
+- [ ] **TOGAF + ITIL 4**: Architecture + Operations
+- [ ] **TOGAF + COBIT 2019**: Architecture + IT Governance (APO03 alignment)
+- [ ] **TOGAF + SAFe**: Enterprise Architecture + Agile Delivery (System Architect, PI Planning)
+- [ ] **TOGAF + SABSA**: EA + Security depth
+- [ ] **TOGAF + DAMA-DMBOK / BIZBOK**: domain-deep practitioner references
+- [ ] Integration principle: TOGAF is the organising framework, others fill gaps
+
+## Module 27: Capstone — Design Your EA Practice
+- [ ] Org context profile (size, industry, regulatory, maturity)
+- [ ] Tailored ADM (which phases full / partial / skipped)
+- [ ] Architecture Board charter and reporting line
+- [ ] Top-15 Architecture Principles across BDAT
+- [ ] ACMM target level + 18-month improvement plan
+- [ ] Funding model recommendation
+- [ ] Integration plan with adjacent frameworks
+- [ ] Anti-pattern guard list (10 behaviours to prevent)
+- [ ] First 90-day plan with visible early wins
+- [ ] EA value scorecard with 5 outcome metrics
+
+## Module 28: Certification Preparation
+- [ ] **Foundation (L1)**: 40 MCQ, 60 min, 55% pass, closed book
+- [ ] Foundation topic weights (Basic 15%, Core 25%, ADM 25%, Techniques 10%, Content 10%, Capability 15%)
+- [ ] **Practitioner (L2)**: 8 scenarios, 90 min, 60% pass, open book, gradient scoring
+- [ ] Combined exam option (80 questions, 150 min)
+- [ ] Mnemonics: ADM phase order, Repository 6 classes, Continuum 4 levels, ACMM 6 levels
+- [ ] Common exam traps (TRM as taxonomy, Continuum vs Repository, View vs Viewpoint, etc.)
+- [ ] 40-term must-know glossary
+- [ ] Practice 60+ MCQs to 85%+ before booking Foundation
+- [ ] Tab the open-book TOGAF Standard for Practitioner (ADM phases, 6 Repository classes, compliance levels, ACMM)
+- [ ] TOGAF 9.x certifications remain valid; not invalidated by TOGAF 10
+- [ ] Digital badge via Credly
 
 ---
 
-## 1. What is TOGAF 10?
-
-TOGAF (The Open Group Architecture Framework) is the world's most widely adopted Enterprise Architecture (EA) framework. Published by The Open Group, TOGAF 10 (released April 2022) is the latest major edition and introduces a modular structure to keep content current without full-framework rewrites.
-
-### Core Purpose
-
-| Goal | Description |
-|---|---|
-| Common Language | Shared vocabulary for architects, business leaders, and IT stakeholders |
-| Proven Methodology | Battle-tested ADM process for developing and managing enterprise architectures |
-| Risk Reduction | Structured approach reduces transformation failure risk |
-| ROI on EA | Provides measurable value through reuse, alignment, and traceability |
-| Stakeholder Communication | Bridges the gap between business strategy and technology execution |
-
-### Who Uses TOGAF?
-
-- **Enterprise Architects** — design and govern the overall enterprise structure
-- **Solution Architects** — apply ADM patterns within project/program boundaries
-- **Business Analysts** — align business capability with operating model
-- **CIOs / CTOs** — drive strategic transformation with a structured framework
-- **Government and regulated industries** — compliance-aware EA governance
-
----
-
-## 2. TOGAF 10 Modular Structure
-
-TOGAF 10 introduced a two-part modular structure replacing the monolithic single-document approach of TOGAF 9.x.
-
-### 2.1 TOGAF Fundamental Content (Stable Core)
-
-The core is stable and versioned independently. It contains the foundational elements that all TOGAF implementations rely on:
-
-| Component | Description |
-|---|---|
-| Architecture Development Method (ADM) | The iterative, phase-based process for developing EA |
-| Architecture Content Framework | Taxonomy of deliverables, artifacts, and building blocks |
-| Enterprise Continuum | Classification system for architecture and solution assets |
-| Architecture Repository | Central store for all EA assets and deliverables |
-| Architecture Capability Framework | How to set up, run, and mature an EA practice |
-
-### 2.2 TOGAF Series Guides (Topic-Specific, Independently Updated)
-
-Series Guides extend the framework for specific domains, technologies, and practices. They can be updated without touching the Fundamental Content:
-
-| Guide | Focus Area |
-|---|---|
-| Business Architecture | Capabilities, value streams, organization maps |
-| Security Architecture | Threat modeling, security controls integration into ADM |
-| Digital Transformation | EA in cloud-native, platform, and digital contexts |
-| Agile Architecture | Applying TOGAF in Agile/SAFe/DevOps environments |
-| Architecture Skills Framework | Competency models for EA practitioners |
-| EA Maturity Models | Assessing and improving EA practice maturity |
-| Migration Planning | Roadmap development, transition architecture, gap analysis |
-
-> **Key Insight**: The modular split allows The Open Group to publish new Series Guides or update existing ones annually without releasing "TOGAF 11." This keeps the framework relevant to emerging domains (e.g., AI governance, cloud architecture) without destabilizing the core.
-
----
-
-## 3. The Four Architecture Domains (BDAT)
-
-TOGAF organizes Enterprise Architecture into four interconnected domains. Together they form a complete picture of the enterprise from business intent down to infrastructure.
-
-```
-Business Architecture
-        |
-        v
-Data Architecture
-        |
-        v
-Application Architecture
-        |
-        v
-Technology Architecture
-```
-
-### 3.1 Business Architecture
-
-Describes how the enterprise operates to achieve its goals.
-
-- **Business Strategy** — vision, goals, drivers, objectives
-- **Business Capabilities** — what the business can do (capability map)
-- **Value Streams** — end-to-end sequences that deliver stakeholder value
-- **Organization Map** — actors, roles, responsibilities
-- **Business Processes** — workflows and operational flows
-- **Business Information** — key concepts and business rules
-
-**Key Artifacts**: Business Capability Map, Value Stream Map, Organization Chart, Business Process Model, Business Use Cases
-
-### 3.2 Data Architecture
-
-Describes the structure, management, and governance of enterprise data assets.
-
-- **Logical Data Model** — conceptual and logical representation of data entities
-- **Physical Data Model** — how data is stored and managed
-- **Data Flows** — movement of data between systems and actors
-- **Data Governance** — ownership, quality, lineage, retention policies
-- **Master Data Management** — single source of truth for key entities
-
-**Key Artifacts**: Logical/Physical Data Model, Data Flow Diagram, Data Entity/Data Component Catalog, Data Governance Framework
-
-### 3.3 Application Architecture
-
-Describes the application landscape and its interaction with business processes and data.
-
-- **Application Portfolio** — inventory of all applications and their capabilities
-- **Application Interactions** — interface and integration map
-- **Application-to-Function Mapping** — which app supports which business function
-- **API Strategy** — how applications expose and consume services
-- **Legacy vs. Target** — current state vs. desired state applications
-
-**Key Artifacts**: Application Portfolio Catalog, Application Interaction Diagram, Application-Function Matrix, Interface Catalog
-
-### 3.4 Technology Architecture
-
-Describes the hardware, software infrastructure, and platform capabilities.
-
-- **Infrastructure Inventory** — servers, networks, storage, cloud platforms
-- **Platform Services** — middleware, integration platforms, runtime environments
-- **Technology Standards** — approved technologies, versions, lifecycle status
-- **Deployment Architecture** — how applications are deployed across infrastructure
-- **Security & Compliance** — network security, access control, compliance requirements
-
-**Key Artifacts**: Technology Standards Catalog, Technology Portfolio, Network Diagram, Deployment Diagram, Infrastructure Catalog
-
----
-
-## 4. Core Components Deep Dive
-
-### 4.1 Architecture Development Method (ADM) — The Process Engine
-
-The ADM is TOGAF's heart — a repeatable, iterative process for developing, transitioning, and governing enterprise architectures. It consists of a Preliminary Phase and eight lettered phases organized in a cycle.
-
-```
-         [Preliminary Phase]
-                 |
-         [A: Architecture Vision]
-        /                         \
-[H: Architecture           [B: Business Architecture]
- Change Management]                |
-        \                   [C: Information Systems Architecture]
-         \                         |
-          \                [D: Technology Architecture]
-           \                       |
-            \              [E: Opportunities & Solutions]
-             \                     |
-              \            [F: Migration Planning]
-               \                   |
-                \          [G: Implementation Governance]
-                 \_________________/
-                      (Cycle)
-```
-
-| Phase | Name | Key Outputs |
-|---|---|---|
-| Preliminary | Framework setup | Architecture Principles, Tailored ADM, EA Capability |
-| A | Architecture Vision | Statement of Architecture Work, Architecture Vision, Stakeholder Map |
-| B | Business Architecture | Baseline/Target Business Architecture, Gap Analysis |
-| C | Information Systems | Baseline/Target Data & Application Architecture, Gap Analysis |
-| D | Technology Architecture | Baseline/Target Technology Architecture, Gap Analysis |
-| E | Opportunities & Solutions | Architecture Roadmap, Work Packages, Transition Architectures |
-| F | Migration Planning | Prioritized project list, Cost/benefit analysis, Migration Plan |
-| G | Implementation Governance | Architecture Contract, Compliance Assessments |
-| H | Architecture Change Management | Change requests, Updated Architecture, Lessons Learned |
-| Requirements Management | (Central) | Architecture Requirements Specifications (feeds all phases) |
-
-### 4.2 Enterprise Continuum — Classification for Reuse
-
-The Enterprise Continuum is a classification system and view of the Architecture Repository. It helps architects locate, select, and leverage existing architecture assets.
-
-**Two sides of the Continuum:**
-
-- **Architecture Continuum**: Ranges from Foundation Architectures (generic, broadly reusable) to Organization-Specific Architectures (tailored for one enterprise). In between: Common Systems Architectures and Industry Architectures.
-- **Solutions Continuum**: The corresponding spectrum for solution implementations — from generic products and services to organization-specific deployed solutions.
-
-```
-Foundation Architecture  →  Common Systems  →  Industry  →  Organization-Specific
-     (most generic)                                             (most specific)
-```
-
-**Why it matters**: Architects should always look "left" (toward generic) before building custom solutions. The Continuum promotes reuse and avoids reinventing the wheel.
-
-### 4.3 Architecture Repository — Central Asset Store
-
-The Architecture Repository is the organized storage for all EA assets. It has six classes of content:
-
-| Class | Contents |
-|---|---|
-| Architecture Metamodel | The ADM process, Content Framework, governance rules |
-| Architecture Landscape | Current, transition, and target architecture descriptions at strategic, segment, and capability levels |
-| Standards Information Base (SIB) | External standards, industry standards, technology standards |
-| Reference Library | Best practices, guidelines, patterns, templates |
-| Governance Log | Compliance records, waivers, dispensations, decisions |
-| Architecture Capability | Skills, processes, roles, tools of the EA practice |
-
-### 4.4 Architecture Content Framework — Structure for Outputs
-
-Defines a consistent taxonomy for architecture deliverables using three categories:
-
-| Category | Definition | Examples |
-|---|---|---|
-| **Deliverables** | Contractually specified work products | Architecture Definition Document, Statement of Architecture Work |
-| **Artifacts** | Granular architecture descriptions (within deliverables) | Capability Map, Application Portfolio, Network Diagram |
-| **Building Blocks** | Reusable components of capability | Architecture Building Blocks (ABBs), Solution Building Blocks (SBBs) |
-
-**Architecture Building Blocks (ABBs)** describe what is needed.
-**Solution Building Blocks (SBBs)** describe how it is implemented.
-
-### 4.5 Architecture Capability Framework — Running EA
-
-Defines how to establish and operate an EA practice within an organization:
-
-- **Architecture Board** — governance body reviewing and approving architectures
-- **Architecture Compliance** — process for checking implementations against approved architectures
-- **Architecture Contracts** — formal agreements between development partners on architecture
-- **Architecture Governance** — policies, processes, roles for EA oversight
-- **Architecture Maturity Models** — tools for assessing and growing EA practice maturity
-- **Architecture Skills Framework** — competency definitions for EA roles
-
----
-
-## 5. Why TOGAF?
-
-### Key Benefits
-
-| Benefit | Detail |
-|---|---|
-| Vendor-Neutral | Not tied to any product, platform, or technology stack |
-| Globally Recognized | Used in 80%+ of Global 50 organizations; recognized credential worldwide |
-| Adaptable | Can be tailored to size, industry, and methodology (Agile, SAFe, etc.) |
-| Reduces EA Risk | Phased, validated approach catches misalignment early |
-| Stakeholder Communication | Common language bridges business-IT divide |
-| Accelerates Delivery | Reuse via Continuum and Repository reduces rework |
-| Compliance Support | Governance structures support regulatory and audit requirements |
-| Career Value | TOGAF certification is a top credential for Solution and Enterprise Architects |
-
-### TOGAF vs. Other Frameworks
-
-| Framework | Focus | Relationship to TOGAF |
-|---|---|---|
-| Zachman Framework | Classification taxonomy | Complements TOGAF (can use as a taxonomy within ADM artifacts) |
-| FEAF (US Federal EA) | US government EA | Built on TOGAF principles |
-| DoDAF | Defense architecture | Domain-specific; ADM principles apply |
-| ArchiMate | Modeling language | Natural companion to TOGAF for visual notation |
-| ITIL | IT service management | Operates at implementation level; TOGAF governs at architecture level |
-| SAFe / Agile | Delivery methodology | TOGAF Series Guide covers integration |
-
----
-
-## 6. TOGAF 10 vs. TOGAF 9.2 — Key Differences
-
-| Aspect | TOGAF 9.2 | TOGAF 10 |
-|---|---|---|
-| Structure | Monolithic single document | Modular: Fundamental Content + Series Guides |
-| Update Cadence | Full revision required | Series Guides updated independently |
-| Business Architecture | Limited coverage | Expanded Series Guide with value streams, capabilities |
-| Digital Transformation | Not addressed | Dedicated Series Guide |
-| Security Architecture | Appendix-level | Full Series Guide |
-| Agile Integration | Limited | Dedicated Agile Architecture Series Guide |
-| Accessibility | Single PDF/HTML | Modular access; buy only what you need |
-| Version Stability | Locked between releases | Core stable; guides continuously improved |
-
-> **Bottom line**: TOGAF 10 did not radically change the ADM or core components. The architecture of the framework itself became modular — making it more maintainable, extensible, and relevant to modern domains.
-
----
-
-## 7. Certification Path
-
-### Level 1: TOGAF Foundation
-
-| Item | Detail |
-|---|---|
-| Objective | Demonstrate understanding of TOGAF fundamentals |
-| Exam Format | 40 multiple-choice questions (MCQ) |
-| Duration | 60 minutes |
-| Pass Mark | 55% (22/40 correct) |
-| Open Book | No |
-| Key Topics | ADM phases, terminology, four domains, Content Framework, Enterprise Continuum, Repository classes |
-
-**Preparation tips**: Know all ADM phases and their key inputs/outputs. Understand all terminology (ABB vs SBB, artifact vs deliverable, etc.). The Preliminary Phase and Requirements Management are commonly tested.
-
-### Level 2: TOGAF Practitioner
-
-| Item | Detail |
-|---|---|
-| Objective | Apply TOGAF in scenarios; demonstrate practitioner-level judgment |
-| Exam Format | 8 scenario-based questions (complex MCQ / gradient scoring) |
-| Duration | 90 minutes |
-| Pass Mark | 60% |
-| Open Book | Yes (TOGAF standard document allowed) |
-| Prerequisite | Must hold Level 1 (Foundation) |
-| Key Topics | ADM application to scenarios, governance decisions, gap analysis, stakeholder management, iteration use |
-
-**Preparation tips**: Focus on *why* and *when*, not just *what*. Scenarios test judgment — know when to iterate the ADM, when to invoke governance, how to handle architectural change requests. Practice with mock scenario questions.
-
-### Combined Exam Option
-
-Both Level 1 and Level 2 can be taken as a single combined exam (80 questions, 150 minutes, split scoring).
-
-### Maintaining Certification
-
-The Open Group periodically requires credential holders to validate for new versions. TOGAF 10 credentials are valid; holders of TOGAF 9.2 are encouraged to bridge-certify.
-
----
-
-## 8. Knowledge Base Structure
-
-This knowledge base is organized into **29 topic directories**, grouped into four logical categories. Directory numbers are preserved (not strictly sequential within groups) to keep cross-references stable.
-
-### A. Fundamental Content & Core (the stable TOGAF core)
-| Directory | Topic | Focus |
-|---|---|---|
-| `01-ADMCycle` | Architecture Development Method | Phase-by-phase deep dive, inputs/outputs, iteration patterns |
-| `02-ArchitectureDomains` | BDAT Domains | Business, Data, Application, Technology architecture detail |
-| `03-Governance` | Architecture Governance | Boards, contracts, compliance, change management |
-| `04-ArchiMate` | ArchiMate Modeling Language | Notation, layers, aspects, viewpoints for TOGAF artifacts |
-| `05-EnterpriseContinuum` | Enterprise Continuum | Classification system, reuse strategy, continuum spectrum |
-| `06-ContentFramework` | Architecture Content Framework | Deliverables, artifacts, building blocks taxonomy |
-| `07-ArchitectureRepository` | Architecture Repository | Six classes, governance log, SIB, reference library |
-| `08-ReferenceModels` | TOGAF Reference Models | TRM (Technical Reference Model), III-RM (Integrated Information Infrastructure) |
-| `10-ArchitectureCapabilityFramework` | Architecture Capability | EA roles, board setup, governance practice |
-
-### B. ADM Techniques (TOGAF-formal techniques used inside the ADM)
-| Directory | Topic | Focus | ADM Phase |
-|---|---|---|---|
-| `26-BusinessScenarios` | Business Scenarios | SMART scenarios; 6 components; requirements gathering | Phase A |
-| `27-StakeholderManagement` | Stakeholder Management | Power/Interest grid; concerns; viewpoints; communications plan | All phases |
-| `28-ArchitecturePrinciples` | Architecture Principles | Format (Name/Statement/Rationale/Implications); 4 categories; quality criteria | Preliminary, A |
-| `29-GapAnalysis` | Gap Analysis | Baseline vs Target; Eliminate/Retain/New; PPT lens; transition architectures | B, C, D |
-| `09-CapabilityBasedPlanning` | Capability-Based Planning | Capability increments, roadmaps, transition architecture | E, F |
-| `20-MigrationPlanning` | Migration Planning | Roadmap, transition architectures, work packages | E, F |
-
-### C. Series Guides (topic-specific, independently updated)
-| Directory | Topic | Focus |
-|---|---|---|
-| `14-SecurityArchitecture` | Security Architecture | Threat modeling, controls integration, SABSA-TOGAF mapping |
-| `15-BusinessArchitectureGuide` | Business Architecture | Capabilities, value streams, organization maps, business motivation |
-| `16-DigitalTransformation` | Digital Transformation | EA in cloud-native, platform, and digital contexts |
-| `19-AgileArchitecture` | Agile Architecture | Continuous architecture, ADM in Agile/SAFe/DevOps, MVPs, fitness functions |
-| `21-EAMaturityModels` | EA Maturity Models | ACMM, OMG EA Maturity, NASCIO; assess and grow EA practice |
-| `22-ArchitectureSkillsFramework` | Skills & Competencies | Role definitions, competency levels, career paths for architects |
-| `23-InformationMapping` | Information Mapping | Data architecture techniques, MDM, information mapping |
-| `24-LeadersGuide` | Leader's Guide | EA for senior architects, CIOs; sponsorship, value articulation |
-| `25-Sustainability` | Sustainability | Green IT, ESG considerations in architecture decisions |
-
-### D. Adoption, Application & Context
-| Directory | Topic | Focus |
-|---|---|---|
-| `11-TOGAF10Changes` | TOGAF 10 Changes | Modular structure, new Series Guides, delta from 9.2 |
-| `12-PracticalArtifacts` | Practical Artifacts | Templates, worked examples, gap analysis, roadmaps |
-| `13-CertificationPrep` | Certification Preparation | L1 and L2 exam prep, practice questions, mnemonics |
-| `17-TOGAFHistory` | TOGAF History | Origins, version evolution, influence on FEAF/DoDAF |
-| `18-TOGAFLimitations` | TOGAF Limitations | Critique, common misuses, where TOGAF doesn't fit |
-
-> **Note on directory numbering**: numbers reflect *creation order*, not category. The four logical groups above are the recommended reading order. Modules `09` (Capability-Based Planning) and `20` (Migration Planning) are listed under "ADM Techniques" because they are technique-modules, not Series Guides.
-
----
-
-## 9. TOGAF in Practice — Key Patterns
-
-### Iteration in the ADM
-
-The ADM is not strictly sequential. Architects regularly iterate:
-
-- **Phase-level iteration**: Revisit earlier phases when new information emerges
-- **ADM cycle iteration**: Run multiple ADM cycles at different architecture levels (Strategic, Segment, Capability)
-- **Spiral model**: Each iteration increases architecture detail and commitment
-
-### Architecture Levels
-
-| Level | Scope | Example |
-|---|---|---|
-| Strategic Architecture | Whole enterprise or major division | 5-year technology strategy |
-| Segment Architecture | Line of business or domain | Customer-facing digital platform |
-| Capability Architecture | Specific capability or initiative | API management platform |
-
-### Gap Analysis
-
-A core ADM technique used in Phases B, C, D:
-
-1. Document Baseline Architecture (current state)
-2. Define Target Architecture (desired state)
-3. Identify gaps (what is missing, what needs to change, what must be eliminated)
-4. Map gaps to work packages in Phase E
-
----
-
-## 10. Quick Reference — ADM Phase Mnemonics
-
-| Mnemonic | Phases |
-|---|---|
-| **P**lease **A**lways **B**uild **C**lean **D**ata **E**nabling **F**ast **G**rowth **H**ere | Preliminary, A, B, C, D, E, F, G, H |
-
-**Phase A outputs to remember**: Statement of Architecture Work, Architecture Vision, Stakeholder Map, Approved Architecture Vision, Architecture Definition Document (initial)
-
-**Requirements Management** sits at the center of all phases — it is not a phase you pass through but a continuous process feeding and receiving from all phases.
-
----
-
-## References and Standards
-
-- **The Open Group TOGAF Standard, 10th Edition** — https://www.opengroup.org/togaf
-- **ArchiMate 3.2 Specification** — https://www.opengroup.org/archimate-forum
-- **TOGAF Certification Program** — https://www.opengroup.org/certifications/togaf
-- **Business Architecture Guild (BIZBOK)** — complementary to TOGAF Business Architecture guide
-- **SABSA** — security architecture framework compatible with TOGAF ADM
-
----
-
-*This knowledge base is maintained as part of the myKnowledgeHub structured learning repository. Target audience: Solution Architects progressing toward Enterprise Architecture certification and practice.*
+## Recommended Practice
+| Module | Practice |
+|--------|----------|
+| Modules 1-3 | Write a 2-page TOGAF cheat sheet from memory; explain BDAT to a non-technical colleague |
+| Module 4 | Draw the ADM cycle from memory with all phases and central RM hub |
+| Modules 5-8 | Run a paper-ADM cycle on a real or invented enterprise transformation |
+| Modules 9-11 | Map 10 real architecture documents to Repository class and Continuum level |
+| Modules 12-14 | Self-assess your org's ACMM (8 dims) and your skills (7 categories × 4 levels) |
+| Module 15 | Author 8 principles (4-part format), build a 12-stakeholder Power/Interest grid, write a SMART Business Scenario, run a Gap Matrix with PPT lens |
+| Module 16 | Map your enterprise's tech to TRM service categories; flag one gap and one duplicate |
+| Module 17 | Build 3 ArchiMate views in Archi: Layered, Motivation, Migration |
+| Modules 18-23 | Pick one Series Guide; write 2-3 pages on applying it to your industry context |
+| Module 24 | Pick one initiative; produce 8+ of the 11 standard artifacts as your portfolio |
+| Modules 25-26 | List 3 places at your org where you would NOT use TOGAF + adjacent framework integration map |
+| Module 27 | Complete the 10-part capstone for a real or imagined organisation |
+| Module 28 | Take Foundation + Practitioner exams |
+
+## Key Resources
+- The Open Group TOGAF Standard, 10th Edition (canonical reference)
+- TOGAF Library — Series Guides + supplementary content
+- ArchiMate 3.2 Specification — companion modeling language
+- *The Software Architect Elevator* — Gregor Hohpe
+- *Building Evolutionary Architectures* — Ford, Parsons, Kua (fitness functions)
+- *Continuous Architecture in Practice* — Erder, Pureur, Woods
+- *Enterprise Architecture as Strategy* — Ross, Weill, Robertson (operating model)
+- *Designing Data-Intensive Applications* — Martin Kleppmann (Phase C Data depth)
+- *Team Topologies* — Skelton, Pais (org design alongside architecture)
+- *Master Data Management* — David Loshin
+- *Data Mesh* — Zhamak Dehghani
+- BIZBOK (Business Architecture Guild), DAMA-DMBOK, SABSA — domain-deep companions
+- Archi (archimatetool.com) — free ArchiMate modeling tool
+- Cloud Carbon Footprint (CNCF) — sustainability measurement
