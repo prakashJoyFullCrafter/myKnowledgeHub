@@ -13,3 +13,5 @@ Successfully copied 510kB to postgres:/home/sql/
 https://anthropic.skilljar.com/
 https://www.youtube.com/watch?v=L68zxvl2LPY
 https://www.youtube.com/watch?v=kwFP-zCLV2M
+
+https://github.com/rtk-ai/rtk
